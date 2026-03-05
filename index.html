@@ -4,134 +4,235 @@ html
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ozi Shop | Premium Store</title>
-    <meta name="description" content="Magazin online premium cu livrare rapidă și plată ramburs.">
+    <title>Ozi Shop | Premium Experience</title>
+    
+    <!-- Meta SEO & Performance -->
+    <meta name="description" content="Magazin premium cu livrare rapidă.">
+    <script src="https://cdn.jsdelivr.net"></script>
     
     <style>
         :root {
-            --primary: #25d366; --danger: #e74c3c; --dark-bg: #0b0b0b;
-            --card-bg: #161616; --text: #ffffff; --border: #222;
-        }
-        * { box-sizing: border-box; }
-        body { 
-            font-family: 'Segoe UI', system-ui, sans-serif; 
-            margin: 0; background: var(--dark-bg); color: var(--text); 
-            line-height: 1.6; overflow-x: hidden; scroll-behavior: smooth;
+            --primary: #25d366; --danger: #ff4757; --dark: #0b0b0b;
+            --card: #1a1a1a; --text: #ffffff; --gray: #888;
         }
 
-        /* Navigație Optimizată */
-        .top-bar { background: var(--danger); text-align: center; padding: 8px; font-size: 0.75rem; font-weight: bold; position: sticky; top: 0; z-index: 2000; }
+        * { box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+        body { background: var(--dark); color: var(--text); margin: 0; scroll-behavior: smooth; }
+
+        /* HEADER & NAV */
         nav { 
-            background: rgba(0,0,0,0.9); backdrop-filter: blur(10px);
-            padding: 10px 5%; display: flex; justify-content: space-between; 
-            align-items: center; position: sticky; top: 31px; z-index: 1500; border-bottom: 1px solid var(--border);
+            position: sticky; top: 0; background: rgba(0,0,0,0.95); 
+            padding: 15px 5%; display: flex; justify-content: space-between; 
+            align-items: center; z-index: 1000; border-bottom: 1px solid #333;
         }
-        .logo { font-size: 1.5rem; font-weight: 900; color: var(--primary); text-decoration: none; letter-spacing: -1px; }
+        .logo { font-size: 1.8rem; font-weight: 800; color: var(--primary); text-decoration: none; }
+        .cart-icon { position: relative; cursor: pointer; font-size: 1.5rem; }
+        #cart-count { 
+            position: absolute; top: -10px; right: -10px; background: var(--danger); 
+            color: white; font-size: 0.7rem; padding: 3px 7px; border-radius: 50%; 
+        }
 
-        /* Grid Produse */
+        /* GRID PRODUSE */
         .container { 
-            display: grid; 
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); 
-            gap: 25px; padding: 20px 5%; max-width: 1300px; margin: 0 auto;
+            display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); 
+            gap: 25px; padding: 40px 5%; max-width: 1400px; margin: 0 auto;
         }
-        .p-card { 
-            background: var(--card-bg); border-radius: 12px; border: 1px solid var(--border); 
-            padding-bottom: 20px; transition: transform 0.3s ease; overflow: hidden;
+        .product-card { 
+            background: var(--card); border-radius: 15px; overflow: hidden; 
+            transition: 0.3s; border: 1px solid #222;
         }
-        .p-card:hover { transform: translateY(-5px); border-color: var(--primary); }
-        .p-img { width: 100%; height: 250px; object-fit: cover; background: #000; }
+        .product-card:hover { transform: translateY(-10px); border-color: var(--primary); }
+        .p-img { width: 100%; height: 280px; object-fit: cover; }
+        .p-info { padding: 20px; }
+        .p-price { font-size: 1.5rem; font-weight: bold; color: var(--primary); margin: 10px 0; }
         
-        .thumbs { display: flex; gap: 5px; justify-content: center; padding: 10px; }
-        .thumbs img { width: 40px; height: 40px; cursor: pointer; border-radius: 4px; border: 1px solid #333; opacity: 0.6; transition: 0.2s; }
-        .thumbs img:hover { opacity: 1; border-color: var(--primary); }
+        select { 
+            width: 100%; padding: 8px; background: #333; color: white; 
+            border: none; border-radius: 5px; margin-bottom: 10px; 
+        }
 
         .btn-add { 
-            background: var(--primary); color: #000; border: none; padding: 12px 25px; 
-            border-radius: 6px; font-weight: bold; cursor: pointer; width: 90%; margin: 10px auto; display: block;
-            transition: 0.2s;
+            width: 100%; background: var(--primary); color: #000; border: none; 
+            padding: 12px; border-radius: 8px; font-weight: bold; cursor: pointer;
         }
-        .btn-add:active { transform: scale(0.95); }
 
-        /* Utilitare */
-        .badge-count { background: var(--primary); color: #000; padding: 2px 6px; border-radius: 10px; font-size: 12px; margin-left: 5px; }
-        .whatsapp-btn { position: fixed; bottom: 20px; right: 20px; background: var(--primary); width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none; box-shadow: 0 4px 15px rgba(37,211,102,0.4); z-index: 999; }
+        /* MODAL COȘ & CHECKOUT */
+        .modal { 
+            display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.9); 
+            z-index: 2000; overflow-y: auto; padding: 20px;
+        }
+        .modal-content { 
+            max-width: 600px; margin: 40px auto; background: #111; 
+            padding: 30px; border-radius: 15px; position: relative; 
+        }
+        .close { position: absolute; right: 20px; top: 20px; font-size: 2rem; cursor: pointer; color: var(--danger); }
 
-        @media (max-width: 768px) {
-            .nav-links { display: none; } /* De implementat burger-ul via JS */
+        .cart-item { 
+            display: flex; justify-content: space-between; align-items: center; 
+            border-bottom: 1px solid #222; padding: 10px 0;
+        }
+        
+        form input { 
+            width: 100%; padding: 12px; margin: 10px 0; background: #222; 
+            border: 1px solid #444; color: white; border-radius: 5px; 
+        }
+
+        .btn-order { 
+            width: 100%; background: #fff; color: #000; border: none; 
+            padding: 15px; border-radius: 8px; font-weight: bold; cursor: pointer; margin-top: 20px;
+        }
+
+        /* WHATSAPP */
+        .wa-float { 
+            position: fixed; bottom: 20px; right: 20px; background: #25d366; 
+            width: 60px; height: 60px; border-radius: 50%; display: flex; 
+            align-items: center; justify-content: center; font-size: 1.8rem; z-index: 1500;
         }
     </style>
 </head>
 <body>
 
-<div class="top-bar">LIVRARE ÎN 24H - PLATĂ LA RECEPȚIE</div>
-
 <nav>
-    <a href="/" class="logo">OZI SHOP</a>
-    <div class="nav-actions">
-        <button class="cart-trigger" aria-label="Coș de cumpărături" style="background:none; border:none; color:white; cursor:pointer; font-size:1.2rem;">
-            🛒<span class="badge-count" id="cart-count">0</span>
-        </button>
-    </div>
+    <a href="#" class="logo">OZI SHOP</a>
+    <div class="cart-icon" onclick="toggleCart()">🛒 <span id="cart-count">0</span></div>
 </nav>
 
-<main>
-    <section id="electronice">
-        <h2 style="text-align:center; margin: 40px 0;">ELECTRONICE</h2>
-        <div class="container">
-            <!-- Produs Optimizat -->
-            <article class="p-card">
-                <img src="imagini/cooler-fata.avif" alt="Cooler Gaming RGB" class="p-img" id="main-img-1" loading="lazy">
-                <div class="thumbs">
-                    <img src="imagini/cooler-fata.avif" alt="view 1" onclick="changeImg('main-img-1', this.src)">
-                    <img src="imagini/cooler-spate.avif" alt="view 2" onclick="changeImg('main-img-1', this.src)">
-                </div>
-                <div style="padding:15px;">
-                    <h3>Cooler Gaming Pro</h3>
-                    <p style="color:var(--primary); font-size:1.4rem; font-weight:bold; margin:10px 0;">125 RON</p>
-                    <button class="btn-add" onclick="updateCart(1)">ADAUGA IN COS</button>
-                </div>
-            </article>
+<div class="container" id="products-grid">
+    <!-- Produs 1 -->
+    <div class="product-card">
+        <img src="https://images.unsplash.com" alt="Nike Red" class="p-img">
+        <div class="p-info">
+            <h3>Nike Air Max Red</h3>
+            <select id="size-1">
+                <option value="38">Mărime: 38</option>
+                <option value="40">Mărime: 40</option>
+                <option value="42">Mărime: 42</option>
+            </select>
+            <div class="p-price">450 RON</div>
+            <button class="btn-add" onclick="addToCart('Nike Air Max Red', 450, 'size-1')">ADĂUGĂ ÎN COȘ</button>
         </div>
-    </section>
-</main>
+    </div>
+    <!-- Produs 2 -->
+    <div class="product-card">
+        <img src="https://images.unsplash.com" alt="Căști" class="p-img">
+        <div class="p-info">
+            <h3>Căști Sony WH</h3>
+            <div class="p-price">1200 RON</div>
+            <button class="btn-add" onclick="addToCart('Căști Sony WH', 1200)">ADĂUGĂ ÎN COȘ</button>
+        </div>
+    </div>
+</div>
 
-<a href="https://wa.me" class="whatsapp-btn" aria-label="Contact WhatsApp">
-    <svg width="30" height="30" fill="white" viewBox="0 0 24 24"><path d="M12.031 6.172c-2.28 0-4.13 1.85-4.13 4.13 0 .741.196 1.435.538 2.033l-.573 2.091 2.141-.561c.59.324 1.264.512 1.982.512 2.28 0 4.13-1.85 4.13-4.13s-1.85-4.13-4.13-4.13zm0-1.262c2.978 0 5.393 2.415 5.393 5.392 0 1.25-.425 2.401-1.141 3.313l.74 2.698-2.768-.725c-.917.653-2.037 1.04-3.245 1.04-2.978 0-5.392-2.415-5.392-5.392s2.414-5.392 5.392-5.392z"/></svg>
-</a>
+<!-- Modal Coș -->
+<div id="cart-modal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="toggleCart()">&times;</span>
+        <h2>Coșul tău</h2>
+        <div id="cart-items-list"></div>
+        <hr>
+        <h3 id="cart-total">Total: 0 RON</h3>
+        
+        <h3>Detalii Livrare</h3>
+        <form id="order-form">
+            <input type="text" id="name" placeholder="Nume Complet" required>
+            <input type="tel" id="phone" placeholder="Număr Telefon" required>
+            <input type="text" id="address" placeholder="Adresă Completă" required>
+            <button type="submit" class="btn-order">FINALIZEAZĂ COMANDA</button>
+        </form>
+    </div>
+</div>
+
+<a href="https://wa.me" class="wa-float">🟢</a>
 
 <script>
-    // Logică simplificată și rapidă
-    let count = 0;
-    const cartCountEl = document.getElementById('cart-count');
+    // Configurare EmailJS (Înlocuiește cu datele tale)
+    (function() {
+        emailjs.init("YOUR_PUBLIC_KEY");
+    })();
 
-    function updateCart(val) {
-        count += val;
-        cartCountEl.innerText = count;
-        cartCountEl.style.transform = "scale(1.2)";
-        setTimeout(() => cartCountEl.style.transform = "scale(1)", 200);
+    let cart = JSON.parse(localStorage.getItem('ozi_cart')) || [];
+
+    function addToCart(name, price, sizeId = null) {
+        const size = sizeId ? document.getElementById(sizeId).value : 'N/A';
+        cart.push({ name, price, size });
+        updateUI();
+        alert(`${name} a fost adăugat în coș!`);
     }
 
-    function changeImg(id, src) {
-        document.getElementById(id).src = src;
+    function removeFromCart(index) {
+        cart.splice(index, 1);
+        updateUI();
     }
 
-    // Intersection Observer pentru animații la scroll (Optimizare performanță)
-    const cards = document.querySelectorAll('.p-card');
-    const observer = new IntersectionObserver(entries => {
-        entries.forEach(entry => {
-            if(entry.isIntersecting) {
-                entry.target.style.opacity = 1;
-                entry.target.style.transform = "translateY(0)";
-            }
-        });
-    }, { threshold: 0.1 });
+    function updateUI() {
+        localStorage.setItem('ozi_cart', JSON.stringify(cart));
+        document.getElementById('cart-count').innerText = cart.length;
+        
+        const list = document.getElementById('cart-items-list');
+        let total = 0;
+        list.innerHTML = cart.map((item, index) => {
+            total += item.price;
+            return `
+                <div class="cart-item">
+                    <div>
+                        <strong>${item.name}</strong><br>
+                        <small>Mărime: ${item.size}</small>
+                    </div>
+                    <div>
+                        <span>${item.price} RON</span>
+                        <button onclick="removeFromCart(${index})" style="background:none; border:none; color:red; cursor:pointer; margin-left:10px;">✖</button>
+                    </div>
+                </div>`;
+        }).join('');
+        
+        document.getElementById('cart-total').innerText = `Total: ${total} RON`;
+    }
 
-    cards.forEach(card => {
-        card.style.opacity = 0;
-        card.style.transform = "translateY(20px)";
-        card.style.transition = "all 0.6s ease-out";
-        observer.observe(card);
+    function toggleCart() {
+        const modal = document.getElementById('cart-modal');
+        modal.style.display = modal.style.display === 'block' ? 'none' : 'block';
+    }
+
+    // Gestionare Comandă
+    document.getElementById('order-form').addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        if(cart.length === 0) return alert("Coșul este gol!");
+
+        const btn = e.target.querySelector('button');
+        btn.innerText = "Se trimite...";
+        btn.disabled = true;
+
+        const orderDetails = cart.map(i => `${i.name} (Marime: ${i.size}) - ${i.price} RON`).join('\n');
+        const total = cart.reduce((a, b) => a + b.price, 0);
+
+        const templateParams = {
+            from_name: document.getElementById('name').value,
+            phone: document.getElementById('phone').value,
+            address: document.getElementById('address').value,
+            order_content: orderDetails,
+            total_price: total + " RON"
+        };
+
+        // Trimitere Email prin EmailJS
+        emailjs.send('cOOSvCrSgAYqSrpDP', 'service_wtcgsi9', templateParams)
+            .then(() => {
+                alert("Comandă trimisă cu succes! Te vom contacta în curând.");
+                cart = [];
+                updateUI();
+                toggleCart();
+                e.target.reset();
+            }, (err) => {
+                alert("Eroare la trimitere: " + JSON.stringify(err));
+            })
+            .finally(() => {
+                btn.innerText = "FINALIZEAZĂ COMANDA";
+                btn.disabled = false;
+            });
     });
+
+    // Inițializare interfață
+    updateUI();
 </script>
 
 </body>
