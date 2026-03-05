@@ -4,7 +4,7 @@ html
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ozi Shop | Premium Magazin Online</title>
+    <title>Ozi Shop | Premium Online Store</title>
     <style>
         :root {
             --primary: #25d366; --danger: #e74c3c; --dark-bg: #0b0b0b;
@@ -14,76 +14,65 @@ html
 
         body { 
             font-family: 'Segoe UI', sans-serif; 
-            margin: 0; 
-            background: var(--dark-bg); 
-            color: var(--text-main); 
-            line-height: 1.6; 
-            scroll-behavior: smooth; 
-            overflow-x: hidden;
+            margin: 0; background: var(--dark-bg); color: var(--text-main); 
+            line-height: 1.6; scroll-behavior: smooth; overflow-x: hidden;
         }
-        
-        /* BARA SOCIALĂ STÂNGA */
+
+        /* BARA SOCIALĂ */
         .sticky-social { position: fixed; top: 50%; transform: translateY(-50%); left: 0; z-index: 2000; display: flex; flex-direction: column; }
-        .social-tag { width: 45px; height: 45px; display: flex; align-items: center; justify-content: flex-start; padding-left: 12px; color: white; text-decoration: none; font-weight: bold; transition: width 0.3s ease; overflow: hidden; border-radius: 0 5px 5px 0; margin-bottom: 5px; font-size: 0.8rem; }
-        .social-tag:hover { width: 220px; }
-        .social-tag span { margin-left: 15px; opacity: 0; transition: opacity 0.3s; white-space: nowrap; font-size: 0.75rem; }
+        .social-tag { width: 45px; height: 45px; display: flex; align-items: center; padding-left: 12px; color: white; text-decoration: none; transition: width 0.3s; overflow: hidden; border-radius: 0 5px 5px 0; margin-bottom: 5px; font-size: 0.8rem; }
+        .social-tag:hover { width: 200px; }
+        .social-tag span { margin-left: 15px; opacity: 0; transition: opacity 0.3s; white-space: nowrap; }
         .social-tag:hover span { opacity: 1; }
         .s-ig { background: var(--insta); } .s-fb { background: var(--fb); }
 
-        /* BARA URGENȚĂ & NAV */
-        .top-bar { background: var(--danger); color: white; text-align: center; padding: 8px; font-size: 0.8rem; font-weight: bold; position: sticky; top: 0; z-index: 1100; letter-spacing: 1px; }
-        
-        nav { 
-            background: #000; 
-            padding: 15px 5%; 
-            display: flex; 
-            justify-content: space-between; 
-            align-items: center; 
-            position: sticky; 
-            top: 32px; 
-            z-index: 1000; 
-            border-bottom: 1px solid #222; 
-        }
-
+        /* NAVIGARE */
+        .top-bar { background: var(--danger); color: white; text-align: center; padding: 8px; font-size: 0.8rem; font-weight: bold; position: sticky; top: 0; z-index: 1100; }
+        nav { background: #000; padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 32px; z-index: 1000; border-bottom: 1px solid #222; }
         .logo { font-size: 1.6rem; font-weight: bold; color: var(--primary); text-decoration: none; }
-
-        /* GRUP ACȚIUNI (COȘ + BURGER) */
+        
         .nav-actions { display: flex; align-items: center; gap: 20px; }
-        .cart-btn { text-decoration: none; font-size: 1.4rem; position: relative; color: white; cursor: pointer; }
+        .cart-btn { text-decoration: none; font-size: 1.4rem; position: relative; color: white; }
         .cart-count { position: absolute; top: -8px; right: -10px; background: var(--primary); color: black; font-size: 0.7rem; padding: 2px 6px; border-radius: 50%; font-weight: bold; }
 
-        /* NAV LINKS */
-        .nav-links a { text-decoration: none; color: white; margin-left: 20px; font-size: 0.85rem; text-transform: uppercase; font-weight: 500; transition: 0.3s; }
+        .nav-links { display: flex; }
+        .nav-links a { text-decoration: none; color: white; margin-left: 20px; font-size: 0.8rem; text-transform: uppercase; transition: 0.3s; }
         .nav-links a:hover { color: var(--primary); }
 
         /* BURGER MENU */
-        .burger { display: none; cursor: pointer; z-index: 1200; }
-        .burger div { width: 25px; height: 3px; background-color: var(--primary); margin: 5px; transition: all 0.3s ease; }
+        .burger { display: none; cursor: pointer; }
+        .burger div { width: 25px; height: 3px; background: var(--primary); margin: 5px; transition: 0.3s; }
 
-        /* HERO */
-        .hero { background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.5)), url('https://images.unsplash.com'); height: 300px; background-size: cover; background-position: center; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; }
-        .features-bar { background: #111; display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); text-align: center; padding: 15px 5%; border-bottom: 1px solid #222; gap: 10px; font-size: 0.75rem; }
-        .section-title { text-align: center; margin: 50px 0 30px; font-size: 1.7rem; text-transform: uppercase; color: var(--primary); letter-spacing: 2px; }
+        /* SECTIUNI PRINCIPALE */
+        .hero { background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.5)), url('https://images.unsplash.com'); height: 250px; background-size: cover; background-position: center; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; }
+        .section-title { text-align: center; margin: 40px 0; color: var(--primary); text-transform: uppercase; letter-spacing: 2px; }
         
-        /* PRODUSE */
         .container { max-width: 1200px; margin: 0 auto; padding: 20px; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
-        .product-card { background: var(--card-bg); border-radius: 12px; overflow: hidden; border: 1px solid #333; transition: 0.3s; padding-bottom: 15px; }
-        .product-img { height: 250px; background: #000; display: flex; align-items: center; justify-content: center; }
-        .product-img img { width: 100%; height: 100%; object-fit: contain; }
-        .product-info { padding: 20px; text-align: center; }
-        .price { font-size: 1.6rem; color: var(--primary); font-weight: bold; display: block; margin-bottom: 15px; }
-        .btn-order { background: var(--primary); color: white; text-decoration: none; padding: 12px; border-radius: 6px; display: block; font-weight: bold; margin: 0 15px; text-align: center; transition: 0.3s; }
-        .btn-order:hover { background: #1eb956; transform: scale(1.02); }
+        .product-card { background: var(--card-bg); border-radius: 12px; border: 1px solid #333; overflow: hidden; text-align: center; transition: 0.3s; padding-bottom: 20px; }
+        .product-card:hover { border-color: var(--primary); }
+        .product-img { height: 220px; background: #000; display: flex; align-items: center; justify-content: center; }
+        .product-img img { max-width: 100%; max-height: 100%; object-fit: contain; }
+        
+        .price { font-size: 1.6rem; color: var(--primary); font-weight: bold; display: block; margin: 15px 0; }
+        .btn-order { background: var(--primary); color: white; text-decoration: none; padding: 12px 25px; border-radius: 6px; font-weight: bold; display: inline-block; border: none; cursor: pointer; transition: 0.3s; }
+        .btn-order:hover { background: #1eb956; transform: scale(1.05); }
 
-        /* FOOTER & FLOAT */
-        footer { background: #000; color: #555; text-align: center; padding: 40px; border-top: 1px solid #222; }
-        .whatsapp-float { position: fixed; width: 55px; height: 55px; bottom: 25px; right: 25px; background-color: #25d366; color: #FFF; border-radius: 50px; text-align: center; font-size: 28px; z-index: 1000; display: flex; align-items: center; justify-content: center; text-decoration: none; animation: bounce 2s infinite; }
-        @keyframes bounce { 0%, 100% {transform: translateY(0)} 50% {transform: translateY(-10px)} }
+        /* FORMULAR & MULTUMIRE */
+        #checkout-page, #thank-you-page { display: none; max-width: 600px; margin: 50px auto; background: var(--card-bg); padding: 30px; border-radius: 15px; border: 1px solid var(--primary); text-align: center; }
+        .form-group { text-align: left; margin-bottom: 15px; }
+        .form-group label { display: block; color: #aaa; margin-bottom: 5px; }
+        .form-group input, .form-group textarea { width: 100%; padding: 12px; background: #000; border: 1px solid #333; color: white; border-radius: 5px; box-sizing: border-box; }
+        
+        .order-box { background: #222; padding: 15px; border-radius: 8px; margin-bottom: 20px; border-left: 5px solid var(--primary); text-align: left; }
 
+        /* WHATSAPP FLOAT */
+        .whatsapp-float { position: fixed; width: 55px; height: 55px; bottom: 25px; right: 25px; background: #25d366; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none; z-index: 1000; animation: bounce 2s infinite; }
+
+        /* RESPONSIVE */
         @media (max-width: 768px) {
-            .nav-links { position: fixed; right: -100%; top: 75px; height: 100vh; background: rgba(0, 0, 0, 0.98); display: flex; flex-direction: column; align-items: center; width: 100%; transition: 0.5s ease; padding-top: 50px; z-index: 999; }
+            .nav-links { position: fixed; right: -100%; top: 75px; height: 100vh; background: #000; width: 100%; flex-direction: column; align-items: center; transition: 0.5s; padding-top: 40px; }
             .nav-links.active { right: 0; }
-            .nav-links a { margin: 20px 0; font-size: 1.2rem; }
+            .nav-links a { margin: 15px 0; font-size: 1.2rem; }
             .burger { display: block; }
             .toggle .line1 { transform: rotate(-45deg) translate(-5px, 6px); }
             .toggle .line2 { opacity: 0; }
@@ -94,92 +83,140 @@ html
 <body>
 
 <div class="sticky-social">
-    <a href="https://www.instagram.com" target="_blank" class="social-tag s-ig">📸 <span>ozishop.magazinonline</span></a>
+    <a href="https://www.instagram.com" target="_blank" class="social-tag s-ig">📸 <span>Instagram</span></a>
     <a href="#" class="social-tag s-fb">f <span>Facebook</span></a>
 </div>
 
-<div class="top-bar">🔥 REDUCERI DE 30% - PLATA LA LIVRARE</div>
+<div class="top-bar">🔥 PLATA LA LIVRARE - VERIFICARE COLET</div>
 
 <nav>
-    <a href="#" class="logo">OZI SHOP</a>
+    <a href="#" class="logo" onclick="location.reload()">OZI SHOP</a>
     <div class="nav-actions">
-        <a href="https://wa.me" class="cart-btn" target="_blank">🛒 <span class="cart-count">0</span></a>
-        <div class="burger" id="burger-menu">
+        <a href="#" class="cart-btn">🛒 <span class="cart-count" id="cart-count">0</span></a>
+        <div class="burger" id="burger">
             <div class="line1"></div>
             <div class="line2"></div>
             <div class="line3"></div>
         </div>
     </div>
-    <div class="nav-links" id="nav-menu">
-        <a href="#electronice">Electronice</a>
-        <a href="#haine">Haine</a>
-        <a href="#incaltaminte">Încălțăminte</a>
+    <div class="nav-links" id="nav-links">
+        <a href="#produse" onclick="location.reload()">Produse</a>
         <a href="#contact">Contact</a>
     </div>
 </nav>
 
-<div class="hero">
-    <h1>Ozi Online Store</h1>
-    <p>Calitate Garantată • Plată la Livrare • Retur 14 Zile</p>
-</div>
-
-<div class="features-bar">
-    <div class="feature-item">📦 Livrare Rapidă 24h</div>
-    <div class="feature-item">🛡️ Garanție Produse</div>
-    <div class="feature-item">🤝 Plată la Livrare</div>
-    <div class="feature-item">🔄 Retur 14 Zile</div>
-</div>
-
-<!-- ELECTRONICE -->
-<h2 class="section-title" id="electronice">Electronice & Gaming</h2>
-<div class="container">
-    <div class="product-card">
-        <div class="product-img"><img src="imagini/cooler-fata.avif" alt="Cooler"></div>
-        <div class="product-info">
-            <h3>Cooler Gaming RGB</h3>
-            <span class="price">125 RON</span>
-            <a href="https://wa.me?text=Buna!%20Vreau%20sa%20comand%20Cooler%20Gaming%20RGB" class="btn-order" target="_blank">Comandă WhatsApp</a>
-        </div>
+<!-- PAGINA PRINCIPALA -->
+<div id="main-content">
+    <div class="hero">
+        <h1>Premium Online Store</h1>
+        <p>Calitate Garantată • Livrare în 24h</p>
     </div>
-</div>
 
-<!-- HAINE -->
-<h2 class="section-title" id="haine">Haine & Fashion</h2>
-<div class="container">
-    <div class="product-card">
-        <div class="product-img"><img src="https://images.unsplash.com" alt="Haine"></div>
-        <div class="product-info">
+    <h2 class="section-title" id="produse">Produse Disponibile</h2>
+    <div class="container">
+        <!-- Produs 1 -->
+        <div class="product-card">
+            <div class="product-img"><img src="imagini/cooler-fata.avif" alt="Cooler"></div>
+            <h3>Cooler Gaming RGB Pro</h3>
+            <span class="price">125 RON</span>
+            <button class="btn-order" onclick="goToCheckout('Cooler Gaming RGB Pro', '125 RON')">Comandă Rapidă</button>
+        </div>
+        <!-- Produs 2 -->
+        <div class="product-card">
+            <div class="product-img"><img src="https://images.unsplash.com" alt="Tricou"></div>
             <h3>Tricou Premium Cotton</h3>
             <span class="price">89 RON</span>
-            <a href="https://wa.me?text=Buna!%20Vreau%20sa%20comand%20Tricou%20Premium" class="btn-order" target="_blank">Comandă WhatsApp</a>
+            <button class="btn-order" onclick="goToCheckout('Tricou Premium Cotton', '89 RON')">Comandă Rapidă</button>
         </div>
     </div>
 </div>
 
-<footer>
-    <p>&copy; 2023 OZI SHOP - Toate drepturile rezervate.</p>
-</footer>
+<!-- PAGINA CHECKOUT -->
+<div id="checkout-page">
+    <h2 style="color: var(--primary);">Finalizare Comandă</h2>
+    <div class="order-box">
+        <p>Produs: <strong id="p-name"></strong></p>
+        <p>Preț: <strong id="p-price"></strong> (Plată la curier)</p>
+    </div>
 
-<!-- Buton Plutitor WhatsApp cu numărul tău -->
-<a href="https://wa.me" class="whatsapp-float" target="_blank">
-    <span style="font-family: Arial, sans-serif; font-weight: bold;">W</span>
-</a>
+    <form id="orderForm" action="https://formspree.io" method="POST">
+        <input type="hidden" name="Produs_Ales" id="hidden-prod">
+        <input type="hidden" name="Pret_Total" id="hidden-price">
+        
+        <div class="form-group">
+            <label>Nume și Prenume</label>
+            <input type="text" name="Nume" required placeholder="Ex: Popescu Ion">
+        </div>
+        <div class="form-group">
+            <label>Telefon</label>
+            <input type="tel" name="Telefon" required placeholder="07xx xxx xxx">
+        </div>
+        <div class="form-group">
+            <label>Adresa Completă</label>
+            <textarea name="Adresa" rows="3" required placeholder="Stradă, Număr, Oraș..."></textarea>
+        </div>
+        <button type="submit" class="btn-order" style="width:100%; background:var(--danger);">TRIMITE COMANDA</button>
+        <p style="font-size: 0.8rem; margin-top: 10px; color: #777;">* Te vom suna pentru confirmare înainte de livrare.</p>
+    </form>
+</div>
+
+<!-- PAGINA DE MULTUMIRE -->
+<div id="thank-you-page">
+    <div style="font-size: 4rem;">🎉</div>
+    <h2 style="color: var(--primary);">Mulțumim pentru comandă!</h2>
+    <p>Comanda ta pentru <strong id="final-prod"></strong> a fost înregistrată cu succes.</p>
+    <p>Vei primi un apel de confirmare pe numărul lăsat în scurt timp.</p>
+    <br>
+    <button class="btn-order" onclick="location.reload()">Înapoi la Magazin</button>
+</div>
+
+<a href="https://wa.me" class="whatsapp-float" target="_blank">W</a>
 
 <script>
-    const burger = document.getElementById('burger-menu');
-    const nav = document.getElementById('nav-menu');
-
+    // Navigare Burger
+    const burger = document.getElementById('burger');
+    const nav = document.getElementById('nav-links');
+    
     burger.addEventListener('click', () => {
         nav.classList.toggle('active');
         burger.classList.toggle('toggle');
     });
 
-    document.querySelectorAll('.nav-links a').forEach(link => {
-        link.addEventListener('click', () => {
-            nav.classList.remove('active');
-            burger.classList.remove('toggle');
+    // Logica Checkout
+    function goToCheckout(name, price) {
+        document.getElementById('main-content').style.display = 'none';
+        document.getElementById('checkout-page').style.display = 'block';
+        
+        document.getElementById('p-name').innerText = name;
+        document.getElementById('p-price').innerText = price;
+        document.getElementById('hidden-prod').value = name;
+        document.getElementById('hidden-price').value = price;
+        document.getElementById('final-prod').innerText = name;
+        
+        window.scrollTo(0,0);
+    }
+
+    // Trimitere Formular cu Redirecționare la Mulțumire
+    const form = document.getElementById('orderForm');
+    form.onsubmit = async (e) => {
+        e.preventDefault();
+        const formData = new FormData(form);
+        
+        // Trimite datele către Formspree
+        const response = await fetch(form.action, {
+            method: 'POST',
+            body: formData,
+            headers: { 'Accept': 'application/json' }
         });
-    });
+
+        if (response.ok) {
+            document.getElementById('checkout-page').style.display = 'none';
+            document.getElementById('thank-you-page').style.display = 'block';
+            document.getElementById('cart-count').innerText = "1";
+        } else {
+            alert("A apărut o eroare. Te rugăm să ne contactezi pe WhatsApp!");
+        }
+    };
 </script>
 
 </body>
