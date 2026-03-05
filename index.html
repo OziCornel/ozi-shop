@@ -4,23 +4,21 @@ html
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ozi Shop | Premium Online Store</title>
+    <title>Ozi Shop | Premium Magazin Online</title>
     <meta name="referrer" content="origin">
     <style>
         :root {
             --primary: #25d366; --danger: #e74c3c; --dark-bg: #0b0b0b;
-            --card-bg: #161616; --gold: #f1c40f; --text-main: #ffffff;
-            --insta: #e1306c; --fb: #4267B2;
+            --card-bg: #161616; --text-main: #ffffff; --insta: #e1306c;
         }
         body { font-family: 'Segoe UI', sans-serif; margin: 0; background: var(--dark-bg); color: var(--text-main); line-height: 1.6; scroll-behavior: smooth; overflow-x: hidden; }
         
         /* BARA SOCIALĂ */
         .sticky-social { position: fixed; top: 50%; transform: translateY(-50%); left: 0; z-index: 2000; display: flex; flex-direction: column; }
-        .social-tag { width: 45px; height: 45px; display: flex; align-items: center; padding-left: 12px; color: white; text-decoration: none; font-weight: bold; transition: width 0.3s; overflow: hidden; border-radius: 0 5px 5px 0; margin-bottom: 5px; }
+        .social-tag { width: 45px; height: 45px; display: flex; align-items: center; padding-left: 12px; color: white; text-decoration: none; font-weight: bold; transition: width 0.3s; overflow: hidden; border-radius: 0 5px 5px 0; margin-bottom: 5px; background: var(--insta); }
         .social-tag:hover { width: 180px; }
         .social-tag span { margin-left: 15px; opacity: 0; transition: 0.3s; white-space: nowrap; font-size: 0.75rem; }
         .social-tag:hover span { opacity: 1; }
-        .s-ig { background: var(--insta); } .s-fb { background: var(--fb); }
 
         /* NAVIGARE */
         .top-bar { background: var(--danger); color: white; text-align: center; padding: 8px; font-size: 0.8rem; font-weight: bold; position: sticky; top: 0; z-index: 1100; }
@@ -29,53 +27,57 @@ html
         .nav-actions { display: flex; align-items: center; gap: 15px; }
         .cart-trigger { background: none; border: none; color: white; font-size: 1.4rem; cursor: pointer; position: relative; }
         .cart-count { position: absolute; top: -8px; right: -10px; background: var(--primary); color: black; font-size: 0.7rem; padding: 2px 6px; border-radius: 50%; font-weight: bold; }
+        
         .nav-links { display: flex; list-style: none; margin: 0; padding: 0; }
         .nav-links li { margin-left: 20px; }
         .nav-links a { text-decoration: none; color: white; font-size: 0.8rem; text-transform: uppercase; font-weight: bold; cursor: pointer; }
+
+        .burger { display: none; cursor: pointer; flex-direction: column; gap: 5px; z-index: 1600; }
+        .burger span { width: 25px; height: 3px; background: var(--primary); transition: 0.4s; }
         
-        .burger { display: none; cursor: pointer; z-index: 1600; }
-        .burger div { width: 25px; height: 3px; background: var(--primary); margin: 5px; transition: 0.4s; }
+        /* ANIMAȚIE BURGER X */
         .toggle .l1 { transform: rotate(-45deg) translate(-5px, 6px); }
         .toggle .l2 { opacity: 0; }
         .toggle .l3 { transform: rotate(45deg) translate(-5px, -6px); }
 
-        /* PRODUSE */
+        /* HERO & PRODUSE */
         .hero { background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.5)), url('https://images.unsplash.com'); height: 250px; background-size: cover; display: flex; align-items: center; justify-content: center; text-align: center; }
         .section-title { text-align: center; margin: 50px 0 20px; color: var(--primary); text-transform: uppercase; letter-spacing: 2px; }
         .container { max-width: 1200px; margin: 0 auto; padding: 20px; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
         .p-card { background: var(--card-bg); border-radius: 12px; border: 1px solid #333; overflow: hidden; text-align: center; padding-bottom: 20px; transition: 0.3s; }
         .p-img { height: 200px; background: #000; display: flex; align-items: center; justify-content: center; }
         .p-img img { max-width: 100%; max-height: 100%; object-fit: contain; }
-        .btn-add { background: var(--primary); color: white; border: none; padding: 12px; width: 80%; border-radius: 6px; font-weight: bold; cursor: pointer; margin-top: 10px; }
+        .price { font-size: 1.5rem; color: var(--primary); font-weight: bold; margin: 15px 0; display: block; }
+        .btn-buy { background: var(--primary); color: white; border: none; padding: 12px; width: 80%; border-radius: 6px; font-weight: bold; cursor: pointer; }
 
         /* MODAL */
         .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 3000; padding: 20px; box-sizing: border-box; overflow-y: auto; }
-        .modal-content { max-width: 550px; margin: 20px auto; background: var(--card-bg); padding: 30px; border-radius: 15px; border: 1px solid var(--primary); position: relative; }
+        .modal-content { max-width: 500px; margin: 20px auto; background: var(--card-bg); padding: 30px; border-radius: 15px; border: 1px solid var(--primary); position: relative; }
         .close-modal { position: absolute; right: 20px; top: 15px; color: var(--danger); font-size: 2rem; cursor: pointer; }
         .form-group { margin-bottom: 15px; text-align: left; }
         .form-group input, .form-group textarea, .form-group select { width: 100%; padding: 12px; background: #000; border: 1px solid #333; color: white; border-radius: 6px; box-sizing: border-box; }
 
         @media (max-width: 768px) {
+            .burger { display: flex; }
             .nav-links { position: fixed; right: -100%; top: 75px; background: #000; width: 100%; height: 100vh; flex-direction: column; align-items: center; transition: 0.5s; padding-top: 40px; }
             .nav-links.active { right: 0; }
-            .burger { display: block; }
+            .nav-links li { margin: 20px 0; }
         }
     </style>
 </head>
 <body>
 
 <div class="sticky-social">
-    <a href="https://www.instagram.com" target="_blank" class="social-tag s-ig">📸 <span>Instagram</span></a>
-    <a href="#" class="social-tag s-fb">f <span>Facebook</span></a>
+    <a href="https://instagram.com" target="_blank" class="social-tag">📸 <span>Instagram</span></a>
 </div>
 
-<div class="top-bar">🔥 REDUCERI DE 30% - PLATA LA LIVRARE</div>
+<div class="top-bar">🚚 PLATA RAMBURS LA LIVRARE - VERIFICARE COLET</div>
 
 <nav>
     <a href="#" class="logo" onclick="location.reload()">OZI SHOP</a>
     <div class="nav-actions">
         <button class="cart-trigger" onclick="openCart()">🛒 <span class="cart-count" id="count">0</span></button>
-        <div class="burger" id="burger" onclick="toggleMenu()"><div class="l1"></div><div class="l2"></div><div class="l3"></div></div>
+        <div class="burger" id="burger" onclick="toggleMenu()"><span class="l1"></span><span class="l2"></span><span class="l3"></span></div>
     </div>
     <ul class="nav-links" id="menu">
         <li><a onclick="scrollToSec('electronice')">Electronice</a></li>
@@ -89,40 +91,39 @@ html
 <h2 class="section-title" id="electronice">Electronice</h2>
 <div class="container">
     <div class="p-card">
-        <div class="p-img"><img src="imagini/cooler-fata.avif" alt="Cooler"></div>
-        <h3>Cooler Gaming RGB</h3>
-        <span style="color:var(--primary); font-weight:bold; font-size:1.4rem;">125 RON</span>
-        <button class="btn-add" onclick="add('Cooler RGB', 125)">Adaugă în Coș</button>
+        <div class="p-img"><img src="imagini/cooler-fata.avif" alt="Cooler Gaming"></div>
+        <h3>Cooler Gaming RGB Pro</h3>
+        <span class="price">125 RON</span>
+        <button class="btn-buy" onclick="add('Cooler RGB Pro', 125)">Adaugă în Coș</button>
     </div>
 </div>
 
 <h2 class="section-title" id="haine">Haine</h2>
 <div class="container">
     <div class="p-card">
-        <div class="p-img"><img src="https://images.unsplash.com" alt="Tricou"></div>
+        <div class="p-img"><img src="https://images.unsplash.com" alt="Tricou Cotton"></div>
         <h3>Tricou Cotton Premium</h3>
-        <span style="color:var(--primary); font-weight:bold; font-size:1.4rem;">89 RON</span>
-        <button class="btn-add" onclick="add('Tricou Premium', 89)">Adaugă în Coș</button>
+        <span class="price">89 RON</span>
+        <button class="btn-buy" onclick="add('Tricou Premium', 89)">Adaugă în Coș</button>
     </div>
 </div>
 
 <h2 class="section-title" id="shoes">Încălțăminte</h2>
 <div class="container">
     <div class="p-card">
-        <div class="p-img"><img src="https://images.unsplash.com" alt="Adidasi"></div>
-        <h3>Adidași Sport Red</h3>
-        <span style="color:var(--primary); font-weight:bold; font-size:1.4rem;">210 RON</span>
-        <button class="btn-add" onclick="add('Adidași Sport', 210)">Adaugă în Coș</button>
+        <div class="p-img"><img src="https://images.unsplash.com" alt="Adidasi Sport"></div>
+        <h3>Adidași Sport Red-Line</h3>
+        <span class="price">210 RON</span>
+        <button class="btn-buy" onclick="add('Adidasi Sport', 210)">Adaugă în Coș</button>
     </div>
 </div>
 
-<!-- MODAL CHECKOUT -->
 <div id="cartModal" class="modal">
     <div class="modal-content">
-        <span class="close-modal" onclick="openCart()">&times;</span>
+        <span class="close-modal" onclick="closeCart()">&times;</span>
         <h2 style="color:var(--primary); margin-top:0;">Finalizare Comandă</h2>
         <div id="summary" style="background:#222; padding:15px; border-radius:8px; margin-bottom:20px; font-size:0.9rem;"></div>
-
+        
         <form id="orderForm">
             <div class="form-group"><input type="text" id="nume" placeholder="Nume Complet" required></div>
             <div class="form-group"><input type="tel" id="tel" placeholder="Telefon" required></div>
@@ -130,11 +131,11 @@ html
             <div class="form-group"><input type="text" id="zip" placeholder="Cod Poștal (opțional)"></div>
             <div class="form-group">
                 <select id="ship">
-                    <option value="Curier (20 RON)">Curier Rapid (24-48h) - 20 RON</option>
-                    <option value="Ridicare Personala">Ridicare Personală - Gratuit</option>
+                    <option value="Curier">Curier Rapid (20 RON)</option>
+                    <option value="Ridicare">Ridicare Personală (Gratuit)</option>
                 </select>
             </div>
-            <button type="submit" id="submitBtn" class="btn-add" style="width:100%; background:var(--danger); padding:15px;">TRIMITE COMANDA</button>
+            <button type="submit" id="submitBtn" class="btn-buy" style="width:100%; background:var(--danger); padding:15px;">TRIMITE COMANDA</button>
         </form>
         <div id="status" style="margin-top:15px; font-weight:bold; text-align:center;"></div>
     </div>
@@ -144,32 +145,32 @@ html
     let cart = [];
     function toggleMenu() { document.getElementById('menu').classList.toggle('active'); document.getElementById('burger').classList.toggle('toggle'); }
     function scrollToSec(id) { document.getElementById(id).scrollIntoView({behavior:'smooth'}); if(window.innerWidth<=768) toggleMenu(); }
+    function add(n, p) { cart.push({n, p}); document.getElementById('count').innerText = cart.length; alert("Produs adăugat!"); }
     
-    function add(n, p) { cart.push({n, p}); document.getElementById('count').innerText = cart.length; alert("Adăugat!"); }
-
     function openCart() {
         const m = document.getElementById('cartModal');
         if (cart.length === 0) { alert("Coșul este gol!"); return; }
-        m.style.display = (m.style.display === 'block') ? 'none' : 'block';
+        m.style.display = 'block';
         let t = 0; let s = ""; cart.forEach(i => { t += i.p; s += i.n + ", "; });
         document.getElementById('summary').innerHTML = `Produse: <b>${s}</b><br>Total: <b>${t} RON</b>`;
     }
+    function closeCart() { document.getElementById('cartModal').style.display = 'none'; }
 
-    // FETCH AJAX FIX
+    // FETCH AJAX - FIX GARANTAT PENTRU GITHUB PAGES
     document.getElementById("orderForm").addEventListener("submit", async function(e) {
         e.preventDefault();
         const status = document.getElementById("status"), btn = document.getElementById("submitBtn");
         btn.innerText = "Se trimite..."; btn.disabled = true;
 
         let t = 0; let s = ""; cart.forEach(i => { t += i.p; s += i.n + ", "; });
-        const data = {
-            Nume: document.getElementById("nume").value,
-            Telefon: document.getElementById("tel").value,
-            Adresa: document.getElementById("adr").value,
+        const data = { 
+            Nume: document.getElementById("nume").value, 
+            Telefon: document.getElementById("tel").value, 
+            Adresa: document.getElementById("adr").value, 
             CodPostal: document.getElementById("zip").value,
             Livrare: document.getElementById("ship").value,
-            Produse: s,
-            Total: t + " RON"
+            Produse: s, 
+            Total: t + " RON" 
         };
 
         try {
