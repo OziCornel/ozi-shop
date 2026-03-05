@@ -4,196 +4,129 @@ html
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ozi Shop | Magazin Online</title>
+    <title>Ozi Shop | Magazin Online Oficial</title>
     <style>
-        :root {
-            --primary: #25d366; --danger: #e74c3c; --dark-bg: #0b0b0b;
-            --card-bg: #161616; --text-main: #ffffff;
-        }
-
+        :root { --primary: #25d366; --danger: #e74c3c; --dark-bg: #0b0b0b; --card-bg: #161616; --text-main: #ffffff; }
         body { font-family: 'Segoe UI', sans-serif; margin: 0; background: var(--dark-bg); color: var(--text-main); overflow-x: hidden; }
-
-        /* NAVIGARE */
-        .top-bar { background: var(--danger); color: white; text-align: center; padding: 8px; font-size: 0.8rem; position: sticky; top: 0; z-index: 1100; }
-        nav { background: #000; padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 32px; z-index: 1000; border-bottom: 1px solid #222; }
+        body.no-scroll { overflow: hidden; }
+        .top-bar { background: var(--danger); color: white; text-align: center; padding: 8px; font-size: 0.8rem; font-weight: bold; position: sticky; top: 0; z-index: 2000; }
+        nav { background: #000; padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 32px; z-index: 1500; border-bottom: 1px solid #333; }
         .logo { font-size: 1.6rem; font-weight: bold; color: var(--primary); text-decoration: none; }
-        
         .nav-actions { display: flex; align-items: center; gap: 20px; }
-        .cart-btn { font-size: 1.4rem; cursor: pointer; position: relative; border: none; background: none; color: white; }
+        .cart-trigger { background: none; border: none; color: white; font-size: 1.5rem; cursor: pointer; position: relative; }
         .cart-count { position: absolute; top: -8px; right: -10px; background: var(--primary); color: black; font-size: 0.7rem; padding: 2px 6px; border-radius: 50%; font-weight: bold; }
-
         .nav-links { display: flex; list-style: none; margin: 0; padding: 0; }
-        .nav-links a { text-decoration: none; color: white; margin-left: 20px; text-transform: uppercase; font-size: 0.8rem; }
-
-        /* BURGER ANIMATIE X */
-        .burger { display: none; cursor: pointer; }
-        .burger div { width: 25px; height: 3px; background: var(--primary); margin: 5px; transition: 0.3s; }
+        .nav-links li { margin-left: 25px; }
+        .nav-links a { text-decoration: none; color: white; text-transform: uppercase; font-size: 0.85rem; font-weight: bold; transition: 0.3s; cursor: pointer; }
+        .nav-links a:hover { color: var(--primary); }
+        .burger { display: none; cursor: pointer; z-index: 2500; }
+        .burger div { width: 25px; height: 3px; background: var(--primary); margin: 5px; transition: 0.4s; }
         .toggle .line1 { transform: rotate(-45deg) translate(-5px, 6px); }
         .toggle .line2 { opacity: 0; }
         .toggle .line3 { transform: rotate(45deg) translate(-5px, -6px); }
-
-        /* SHOP & PRODUSE */
-        .container { max-width: 1200px; margin: 40px auto; padding: 20px; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
-        .product-card { background: var(--card-bg); border-radius: 10px; border: 1px solid #333; padding: 15px; text-align: center; }
-        .product-card img { width: 100%; height: 200px; object-fit: contain; }
-        .price { color: var(--primary); font-size: 1.4rem; font-weight: bold; display: block; margin: 10px 0; }
-        .btn { background: var(--primary); color: white; border: none; padding: 10px; width: 100%; border-radius: 5px; cursor: pointer; font-weight: bold; }
-
-        /* MODAL COS & CHECKOUT */
-        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 2000; overflow-y: auto; padding-top: 50px; }
-        .modal-content { background: var(--card-bg); max-width: 500px; margin: auto; padding: 25px; border-radius: 10px; border: 1px solid var(--primary); }
-        .close { color: var(--danger); float: right; font-size: 1.5rem; cursor: pointer; font-weight: bold; }
-        
-        .form-group { margin-bottom: 15px; text-align: left; }
-        .form-group label { display: block; margin-bottom: 5px; color: #aaa; }
-        .form-group input, .form-group textarea { width: 100%; padding: 10px; background: #000; border: 1px solid #333; color: white; border-radius: 5px; box-sizing: border-box; }
-
-        .cart-item { display: flex; justify-content: space-between; border-bottom: 1px solid #333; padding: 10px 0; }
-
+        .hero { background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.5)), url('https://images.unsplash.com'); height: 250px; background-size: cover; display: flex; align-items: center; justify-content: center; text-align: center; }
+        .section-title { text-align: center; margin: 40px 0; color: var(--primary); text-transform: uppercase; letter-spacing: 2px; }
+        .container { max-width: 1200px; margin: 0 auto 50px; padding: 0 20px; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
+        .product-card { background: var(--card-bg); border-radius: 12px; border: 1px solid #333; overflow: hidden; text-align: center; padding-bottom: 20px; transition: 0.3s; }
+        .product-card:hover { border-color: var(--primary); transform: translateY(-5px); }
+        .product-img { height: 220px; display: flex; align-items: center; justify-content: center; background: #000; }
+        .product-img img { max-width: 100%; max-height: 100%; object-fit: contain; }
+        .price { font-size: 1.5rem; color: var(--primary); font-weight: bold; margin: 15px 0; display: block; }
+        .btn-add { background: var(--primary); color: white; border: none; padding: 12px 20px; border-radius: 6px; font-weight: bold; cursor: pointer; width: 85%; transition: 0.3s; }
+        .btn-add:hover { background: #1eb956; }
+        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 3000; overflow-y: auto; padding: 40px 20px; box-sizing: border-box; }
+        .modal-content { max-width: 500px; margin: 0 auto; background: var(--card-bg); padding: 30px; border-radius: 15px; border: 1px solid var(--primary); position: relative; }
+        .close-btn { position: absolute; right: 20px; top: 20px; color: var(--danger); font-size: 1.5rem; cursor: pointer; font-weight: bold; }
+        .cart-item { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #333; padding: 12px 0; font-size: 0.9rem; }
+        .remove-item { color: var(--danger); cursor: pointer; font-size: 0.8rem; border: 1px solid var(--danger); padding: 2px 6px; border-radius: 4px; }
+        .form-group { text-align: left; margin-top: 15px; }
+        .form-group label { display: block; color: #888; font-size: 0.85rem; margin-bottom: 5px; }
+        .form-group input, .form-group textarea { width: 100%; padding: 12px; background: #000; border: 1px solid #333; color: white; border-radius: 6px; box-sizing: border-box; }
+        .btn-submit { background: var(--danger); color: white; border: none; width: 100%; padding: 15px; margin-top: 20px; border-radius: 6px; font-weight: bold; cursor: pointer; font-size: 1rem; }
+        .whatsapp-float { position: fixed; width: 60px; height: 60px; bottom: 30px; right: 30px; background: #25d366; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none; z-index: 1000; box-shadow: 0 4px 15px rgba(0,0,0,0.3); font-weight: bold; }
         @media (max-width: 768px) {
-            .nav-links { position: fixed; right: -100%; top: 75px; background: #000; width: 100%; height: 100vh; flex-direction: column; align-items: center; transition: 0.4s; padding-top: 50px; }
+            .nav-links { position: fixed; right: -100%; top: 75px; background: #000; width: 100%; height: 100vh; flex-direction: column; align-items: center; transition: 0.5s; padding-top: 50px; }
             .nav-links.active { right: 0; }
+            .nav-links li { margin: 20px 0; }
             .burger { display: block; }
         }
     </style>
 </head>
 <body>
-
-<div class="top-bar">🔥 REDUCERI DE 30% - PLATA LA LIVRARE</div>
-
+<div class="top-bar">✅ PLATA LA LIVRARE - VERIFICARE COLET LA PRIMIRE</div>
 <nav>
-    <a href="#" class="logo">OZI SHOP</a>
+    <a href="#" class="logo" onclick="location.reload()">OZI SHOP</a>
     <div class="nav-actions">
-        <button class="cart-btn" onclick="toggleCart()">🛒 <span class="cart-count" id="cart-count">0</span></button>
+        <button class="cart-trigger" onclick="toggleCart()">🛒 <span class="cart-count" id="cart-count">0</span></button>
         <div class="burger" id="burger" onclick="toggleMenu()">
-            <div class="line1"></div>
-            <div class="line2"></div>
-            <div class="line3"></div>
+            <div class="line1"></div><div class="line2"></div><div class="line3"></div>
         </div>
     </div>
-    <ul class="nav-links" id="nav-links">
-        <li><a href="#" onclick="toggleMenu()">Acasă</a></li>
-        <li><a href="#produse" onclick="toggleMenu()">Produse</a></li>
+    <ul class="nav-links" id="nav-menu">
+        <li><a onclick="scrollToSection('produse')">Produse</a></li>
+        <li><a onclick="scrollToSection('contact-sec')">Contact</a></li>
         <li><a href="https://wa.me">WhatsApp</a></li>
     </ul>
 </nav>
-
-<div class="container" id="produse">
-    <!-- Produs 1 -->
-    <div class="product-card">
-        <img src="imagini/cooler-fata.avif" alt="Cooler">
-        <h3>Cooler Gaming RGB Pro</h3>
-        <span class="price">125 RON</span>
-        <button class="btn" onclick="addToCart('Cooler Gaming RGB Pro', 125)">Adaugă în Coș</button>
-    </div>
-    <!-- Produs 2 -->
-    <div class="product-card">
-        <img src="https://images.unsplash.com" alt="Tricou">
-        <h3>Tricou Premium Cotton</h3>
-        <span class="price">89 RON</span>
-        <button class="btn" onclick="addToCart('Tricou Premium Cotton', 89)">Adaugă în Coș</button>
-    </div>
+<div class="hero"><div><h1>Premium Online Store</h1><p>Produse de top cu livrare rapidă.</p></div></div>
+<h2 class="section-title" id="produse">Catalog Produse</h2>
+<div class="container">
+    <div class="product-card"><div class="product-img"><img src="https://images.unsplash.com" alt="Cooler"></div><div style="padding: 0 15px;"><h3>Cooler RGB Pro</h3><span class="price">125 RON</span><button class="btn-add" onclick="addToCart('Cooler RGB Pro', 125)">Adaugă în Coș</button></div></div>
+    <div class="product-card"><div class="product-img"><img src="https://images.unsplash.com" alt="Tricou"></div><div style="padding: 0 15px;"><h3>Tricou Premium</h3><span class="price">89 RON</span><button class="btn-add" onclick="addToCart('Tricou Premium', 89)">Adaugă în Coș</button></div></div>
 </div>
-
-<!-- MODAL COS DE CUMPARATURI -->
-<div id="cartModal" class="modal">
-    <div class="modal-content">
-        <span class="close" onclick="toggleCart()">&times; Închide</span>
-        <h2 style="color: var(--primary);">Coșul tău</h2>
-        <div id="cart-items-list">
-            <p>Coșul este gol.</p>
-        </div>
-        <hr style="border: 0.5px solid #333; margin: 20px 0;">
-        
-        <form action="https://formspree.io" method="POST" id="checkoutForm">
-            <!-- Campuri pt Formspree -->
-            <input type="hidden" name="Produse" id="hidden-cart-data">
-            <input type="hidden" name="Total_Plata" id="hidden-total">
-            
-            <div class="form-group">
-                <label>Nume Complet</label>
-                <input type="text" name="Nume" required>
-            </div>
-            <div class="form-group">
-                <label>Telefon</label>
-                <input type="tel" name="Telefon" required>
-            </div>
-            <div class="form-group">
-                <label>Adresa de Livrare</label>
-                <textarea name="Adresa" rows="3" required></textarea>
-            </div>
-            <button type="submit" class="btn" style="background: var(--danger); margin-top: 10px;">TRIMITE COMANDA (PLATA RAMBURS)</button>
-        </form>
-    </div>
+<div id="contact-sec" style="text-align:center; padding: 40px 20px; background: #111;">
+    <h2 style="color:var(--primary)">Contactează-ne</h2>
+    <a href="https://wa.me" style="color:white; font-weight:bold; text-decoration:none;">0722 992 144</a>
 </div>
-
+<div id="cartModal" class="modal"><div class="modal-content"><span class="close-btn" onclick="toggleCart()">&times;</span><h2 style="color:var(--primary); margin-top:0;">Coșul Tău</h2><div id="cart-list"><p>Coș gol.</p></div>
+<div id="checkout-form-container" style="display:none; margin-top:20px; border-top:1px solid #333;">
+<form action="https://formspree.io" method="POST">
+<input type="hidden" name="Produse" id="hidden-items"><input type="hidden" name="Total" id="hidden-total">
+<div class="form-group"><input type="text" name="Nume" required placeholder="Nume Complet"></div>
+<div class="form-group"><input type="tel" name="Telefon" required placeholder="Telefon"></div>
+<div class="form-group"><textarea name="Adresa" required placeholder="Adresă Livrare"></textarea></div>
+<button type="submit" class="btn-submit">PLASARE COMANDĂ</button></form></div></div></div>
+<a href="https://wa.me" class="whatsapp-float" target="_blank">WA</a>
 <script>
     let cart = [];
-
-    // Funcție Meniu Burger
     function toggleMenu() {
-        const nav = document.getElementById('nav-links');
-        const burger = document.getElementById('burger');
-        nav.classList.toggle('active');
-        burger.classList.toggle('toggle');
+        document.getElementById('nav-menu').classList.toggle('active');
+        document.getElementById('burger').classList.toggle('toggle');
+        document.body.classList.toggle('no-scroll');
     }
-
-    // Funcție Deschidere/Inchidere Coș
-    function toggleCart() {
-        const modal = document.getElementById('cartModal');
-        modal.style.display = (modal.style.display === 'block') ? 'none' : 'block';
-        renderCart();
+    function scrollToSection(id) {
+        document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+        if(window.innerWidth <= 768) toggleMenu();
     }
-
-    // Adaugă în Coș
     function addToCart(name, price) {
         cart.push({ name, price });
-        updateCartCount();
-        alert(name + " a fost adăugat în coș!");
+        updateCartUI();
     }
-
-    function updateCartCount() {
+    function removeFromCart(index) {
+        cart.splice(index, 1);
+        updateCartUI();
+    }
+    function updateCartUI() {
         document.getElementById('cart-count').innerText = cart.length;
-    }
-
-    // Afișează produsele în modal
-    function renderCart() {
-        const list = document.getElementById('cart-items-list');
-        const hiddenData = document.getElementById('hidden-cart-data');
-        const hiddenTotal = document.getElementById('hidden-total');
-        
-        if (cart.length === 0) {
-            list.innerHTML = "<p>Coșul este gol.</p>";
-            return;
-        }
-
-        let html = "";
-        let total = 0;
-        let textData = "";
-
-        cart.forEach((item, index) => {
-            html += `<div class="cart-item">
-                        <span>${item.name}</span>
-                        <span>${item.price} RON</span>
-                     </div>`;
-            total += item.price;
-            textData += `${item.name} (${item.price} RON); `;
+        const list = document.getElementById('cart-list'), check = document.getElementById('checkout-form-container');
+        if (cart.length === 0) { list.innerHTML = "<p>Coș gol.</p>"; check.style.display = "none"; return; }
+        check.style.display = "block";
+        let html = "", total = 0, summary = "";
+        cart.forEach((item, i) => {
+            html += `<div class="cart-item"><span>${item.name}</span><div><strong>${item.price} RON</strong> <span class="remove-item" onclick="removeFromCart(${i})">X</span></div></div>`;
+            total += item.price; summary += `${item.name}, `;
         });
-
-        html += `<div style="text-align:right; margin-top:15px; font-weight:bold; color:var(--primary);">TOTAL: ${total} RON</div>`;
+        html += `<div style="text-align:right; margin-top:10px; font-weight:bold; color:var(--primary);">TOTAL: ${total} RON</div>`;
         list.innerHTML = html;
-        
-        // Punem datele în inputurile ascunse pentru a fi trimise pe email
-        hiddenData.value = textData;
-        hiddenTotal.value = total + " RON";
+        document.getElementById('hidden-items').value = summary;
+        document.getElementById('hidden-total').value = total + " RON";
     }
-
-    // Închide modalul dacă dai click în afara lui
-    window.onclick = function(event) {
+    function toggleCart() {
         const modal = document.getElementById('cartModal');
-        if (event.target == modal) modal.style.display = "none";
+        modal.style.display = (modal.style.display === "block") ? "none" : "block";
+        document.body.classList.toggle('no-scroll', modal.style.display === "block");
     }
+    window.onclick = function(e) { if (e.target == document.getElementById('cartModal')) toggleCart(); }
 </script>
-
 </body>
 </html>
