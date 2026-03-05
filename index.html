@@ -39,8 +39,8 @@ html
         .nav-links a { text-decoration: none; color: white; margin-left: 20px; font-size: 0.8rem; text-transform: uppercase; transition: 0.3s; }
         .nav-links a:hover { color: var(--primary); }
 
-        /* BURGER MENU */
-        .burger { display: none; cursor: pointer; }
+        /* BURGER MENU CU ANIMATIE X */
+        .burger { display: none; cursor: pointer; z-index: 1200; }
         .burger div { width: 25px; height: 3px; background: var(--primary); margin: 5px; transition: 0.3s; }
 
         /* SECTIUNI PRINCIPALE */
@@ -66,11 +66,11 @@ html
         .order-box { background: #222; padding: 15px; border-radius: 8px; margin-bottom: 20px; border-left: 5px solid var(--primary); text-align: left; }
 
         /* WHATSAPP FLOAT */
-        .whatsapp-float { position: fixed; width: 55px; height: 55px; bottom: 25px; right: 25px; background: #25d366; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none; z-index: 1000; animation: bounce 2s infinite; }
+        .whatsapp-float { position: fixed; width: 55px; height: 55px; bottom: 25px; right: 25px; background: #25d366; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none; z-index: 1000; animation: bounce 2s infinite; font-weight: bold; }
 
         /* RESPONSIVE */
         @media (max-width: 768px) {
-            .nav-links { position: fixed; right: -100%; top: 75px; height: 100vh; background: #000; width: 100%; flex-direction: column; align-items: center; transition: 0.5s; padding-top: 40px; }
+            .nav-links { position: fixed; right: -100%; top: 75px; height: 100vh; background: #000; width: 100%; flex-direction: column; align-items: center; transition: 0.5s; padding-top: 40px; z-index: 999; }
             .nav-links.active { right: 0; }
             .nav-links a { margin: 15px 0; font-size: 1.2rem; }
             .burger { display: block; }
@@ -93,19 +93,20 @@ html
     <a href="#" class="logo" onclick="location.reload()">OZI SHOP</a>
     <div class="nav-actions">
         <a href="#" class="cart-btn">🛒 <span class="cart-count" id="cart-count">0</span></a>
-        <div class="burger" id="burger">
+        <div class="burger" id="burger-btn">
             <div class="line1"></div>
             <div class="line2"></div>
             <div class="line3"></div>
         </div>
     </div>
-    <div class="nav-links" id="nav-links">
+    <div class="nav-links" id="nav-menu">
         <a href="#produse" onclick="location.reload()">Produse</a>
-        <a href="#contact">Contact</a>
+        <a href="#recenzii">Recenzii</a>
+        <a href="https://wa.me">Contact</a>
     </div>
 </nav>
 
-<!-- PAGINA PRINCIPALA -->
+<!-- SECTIUNE SHOP PRINCIPALA -->
 <div id="main-content">
     <div class="hero">
         <h1>Premium Online Store</h1>
@@ -116,14 +117,14 @@ html
     <div class="container">
         <!-- Produs 1 -->
         <div class="product-card">
-            <div class="product-img"><img src="imagini/cooler-fata.avif" alt="Cooler"></div>
+            <div class="product-img"><img src="imagini/cooler-fata.avif" alt="Cooler Gaming"></div>
             <h3>Cooler Gaming RGB Pro</h3>
             <span class="price">125 RON</span>
             <button class="btn-order" onclick="goToCheckout('Cooler Gaming RGB Pro', '125 RON')">Comandă Rapidă</button>
         </div>
         <!-- Produs 2 -->
         <div class="product-card">
-            <div class="product-img"><img src="https://images.unsplash.com" alt="Tricou"></div>
+            <div class="product-img"><img src="https://images.unsplash.com" alt="Tricou Premium"></div>
             <h3>Tricou Premium Cotton</h3>
             <span class="price">89 RON</span>
             <button class="btn-order" onclick="goToCheckout('Tricou Premium Cotton', '89 RON')">Comandă Rapidă</button>
@@ -131,14 +132,16 @@ html
     </div>
 </div>
 
-<!-- PAGINA CHECKOUT -->
+<!-- SECTIUNE CHECKOUT -->
 <div id="checkout-page">
+    <button onclick="location.reload()" style="background:none; color:var(--danger); border:none; cursor:pointer; font-weight:bold; margin-bottom:15px;">← Anulează</button>
     <h2 style="color: var(--primary);">Finalizare Comandă</h2>
     <div class="order-box">
         <p>Produs: <strong id="p-name"></strong></p>
         <p>Preț: <strong id="p-price"></strong> (Plată la curier)</p>
     </div>
 
+    <!-- FORMULAR INTEGRAT CU FORMSPREE-UL TĂU -->
     <form id="orderForm" action="https://formspree.io" method="POST">
         <input type="hidden" name="Produs_Ales" id="hidden-prod">
         <input type="hidden" name="Pret_Total" id="hidden-price">
@@ -152,37 +155,39 @@ html
             <input type="tel" name="Telefon" required placeholder="07xx xxx xxx">
         </div>
         <div class="form-group">
-            <label>Adresa Completă</label>
-            <textarea name="Adresa" rows="3" required placeholder="Stradă, Număr, Oraș..."></textarea>
+            <label>Adresa Completă (Stradă, Nr, Oraș)</label>
+            <textarea name="Adresa" rows="3" required placeholder="Ex: Str. Florilor, Nr. 5, București"></textarea>
         </div>
-        <button type="submit" class="btn-order" style="width:100%; background:var(--danger);">TRIMITE COMANDA</button>
-        <p style="font-size: 0.8rem; margin-top: 10px; color: #777;">* Te vom suna pentru confirmare înainte de livrare.</p>
+        <button type="submit" class="btn-order" style="width:100%; background:var(--danger);">CONFIRMĂ COMANDA</button>
+        <p style="font-size: 0.8rem; margin-top: 10px; color: #777;">* Livrare prin curier rapid în 24-48h.</p>
     </form>
 </div>
 
-<!-- PAGINA DE MULTUMIRE -->
+<!-- SECTIUNE MULTUMIRE -->
 <div id="thank-you-page">
-    <div style="font-size: 4rem;">🎉</div>
-    <h2 style="color: var(--primary);">Mulțumim pentru comandă!</h2>
-    <p>Comanda ta pentru <strong id="final-prod"></strong> a fost înregistrată cu succes.</p>
-    <p>Vei primi un apel de confirmare pe numărul lăsat în scurt timp.</p>
+    <div style="font-size: 4rem;">✅</div>
+    <h2 style="color: var(--primary);">Comandă Trimisă!</h2>
+    <p>Îți mulțumim, <strong id="customer-name"></strong>!</p>
+    <p>Comanda pentru <strong id="final-prod"></strong> a fost recepționată.</p>
+    <p>Te vom contacta telefonic pentru confirmarea livrării.</p>
     <br>
-    <button class="btn-order" onclick="location.reload()">Înapoi la Magazin</button>
+    <button class="btn-order" onclick="location.reload()">Înapoi la Produse</button>
 </div>
 
+<!-- WHATSAPP FLOAT -->
 <a href="https://wa.me" class="whatsapp-float" target="_blank">W</a>
 
 <script>
-    // Navigare Burger
-    const burger = document.getElementById('burger');
-    const nav = document.getElementById('nav-links');
+    // LOGICA MENIU BURGER
+    const burger = document.getElementById('burger-btn');
+    const nav = document.getElementById('nav-menu');
     
     burger.addEventListener('click', () => {
         nav.classList.toggle('active');
         burger.classList.toggle('toggle');
     });
 
-    // Logica Checkout
+    // LOGICA NAVIGARE CHECKOUT
     function goToCheckout(name, price) {
         document.getElementById('main-content').style.display = 'none';
         document.getElementById('checkout-page').style.display = 'block';
@@ -196,13 +201,18 @@ html
         window.scrollTo(0,0);
     }
 
-    // Trimitere Formular cu Redirecționare la Mulțumire
+    // TRIMITERE FORMULAR AJAX (PENTRU PAGINA DE MULTUMIRE FARA REFRESH)
     const form = document.getElementById('orderForm');
     form.onsubmit = async (e) => {
         e.preventDefault();
         const formData = new FormData(form);
+        const customerName = formData.get('Nume');
         
-        // Trimite datele către Formspree
+        // Dezactivează butonul pentru a preveni trimiteri multiple
+        const btn = form.querySelector('button');
+        btn.innerText = "Se trimite...";
+        btn.disabled = true;
+
         const response = await fetch(form.action, {
             method: 'POST',
             body: formData,
@@ -210,11 +220,14 @@ html
         });
 
         if (response.ok) {
+            document.getElementById('customer-name').innerText = customerName;
             document.getElementById('checkout-page').style.display = 'none';
             document.getElementById('thank-you-page').style.display = 'block';
             document.getElementById('cart-count').innerText = "1";
         } else {
-            alert("A apărut o eroare. Te rugăm să ne contactezi pe WhatsApp!");
+            alert("Eroare! Te rugăm să trimiți comanda pe WhatsApp la 0722 992 144.");
+            btn.innerText = "REÎNCEARCĂ";
+            btn.disabled = false;
         }
     };
 </script>
