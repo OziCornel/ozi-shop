@@ -4,187 +4,154 @@ html
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ozi Shop | Magazin Online Premium</title>
+    <title>Ozi Shop | Premium Magazin Online</title>
     <style>
         :root {
             --primary: #25d366; --danger: #e74c3c; --dark-bg: #0b0b0b;
-            --card-bg: #161616; --text-main: #ffffff; --insta: #e1306c; --fb: #4267B2;
+            --card-bg: #161616; --text-main: #ffffff;
         }
-        body { font-family: 'Segoe UI', sans-serif; margin: 0; background: var(--dark-bg); color: var(--text-main); line-height: 1.6; scroll-behavior: smooth; overflow-x: hidden; }
+        body { font-family: 'Segoe UI', sans-serif; margin: 0; background: var(--dark-bg); color: var(--text-main); overflow-x: hidden; scroll-behavior: smooth; }
         
-        /* BARA SOCIALĂ */
+        /* BARA SOCIALĂ STÂNGA */
         .sticky-social { position: fixed; top: 50%; transform: translateY(-50%); left: 0; z-index: 2000; display: flex; flex-direction: column; }
-        .social-tag { width: 45px; height: 45px; display: flex; align-items: center; padding-left: 12px; color: white; text-decoration: none; font-weight: bold; transition: width 0.3s; overflow: hidden; border-radius: 0 5px 5px 0; margin-bottom: 5px; }
+        .social-tag { width: 45px; height: 45px; display: flex; align-items: center; justify-content: flex-start; padding-left: 12px; color: white; text-decoration: none; font-weight: bold; transition: 0.3s; overflow: hidden; border-radius: 0 5px 5px 0; margin-bottom: 5px; background: #e1306c; }
         .social-tag:hover { width: 180px; }
-        .social-tag span { margin-left: 15px; opacity: 0; transition: opacity 0.3s; white-space: nowrap; font-size: 0.75rem; }
+        .social-tag span { margin-left: 15px; opacity: 0; transition: 0.3s; white-space: nowrap; font-size: 0.75rem; }
         .social-tag:hover span { opacity: 1; }
-        .s-ig { background: var(--insta); } .s-fb { background: var(--fb); }
 
         /* NAVIGARE */
         .top-bar { background: var(--danger); color: white; text-align: center; padding: 8px; font-size: 0.8rem; font-weight: bold; position: sticky; top: 0; z-index: 1100; }
         nav { background: #000; padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 32px; z-index: 1500; border-bottom: 1px solid #222; }
         .logo { font-size: 1.6rem; font-weight: bold; color: var(--primary); text-decoration: none; }
-        
         .nav-actions { display: flex; align-items: center; gap: 15px; }
-        .cart-trigger { background: none; border: none; color: white; font-size: 1.4rem; cursor: pointer; position: relative; }
+        .cart-btn { background: none; border: none; color: white; font-size: 1.4rem; cursor: pointer; position: relative; }
         .cart-count { position: absolute; top: -8px; right: -10px; background: var(--primary); color: black; font-size: 0.7rem; padding: 2px 6px; border-radius: 50%; font-weight: bold; }
-
+        
         .nav-links { display: flex; list-style: none; margin: 0; padding: 0; }
         .nav-links li { margin-left: 20px; }
-        .nav-links a { text-decoration: none; color: white; font-size: 0.8rem; text-transform: uppercase; font-weight: bold; transition: 0.3s; cursor: pointer; }
-        
-        .burger { display: none; cursor: pointer; z-index: 1600; }
-        .burger div { width: 25px; height: 3px; background: var(--primary); margin: 5px; transition: 0.4s; }
-        
-        /* ANIMATIE BURGER X */
-        .toggle .line1 { transform: rotate(-45deg) translate(-5px, 6px); }
-        .toggle .line2 { opacity: 0; }
-        .toggle .line3 { transform: rotate(45deg) translate(-5px, -6px); }
+        .nav-links a { text-decoration: none; color: white; font-size: 0.8rem; text-transform: uppercase; font-weight: bold; cursor: pointer; }
 
-        /* HERO & PRODUSE */
-        .hero { background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.5)), url('https://images.unsplash.com'); height: 250px; background-size: cover; background-position: center; display: flex; align-items: center; justify-content: center; text-align: center; }
-        .section-title { text-align: center; margin: 50px 0 20px; color: var(--primary); text-transform: uppercase; letter-spacing: 2px; }
-        .container { max-width: 1200px; margin: 0 auto; padding: 20px; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
-        .product-card { background: var(--card-bg); border-radius: 12px; border: 1px solid #333; overflow: hidden; text-align: center; padding-bottom: 20px; transition: 0.3s; }
+        /* BURGER */
+        .burger { display: none; cursor: pointer; flex-direction: column; gap: 5px; }
+        .burger span { width: 25px; height: 3px; background: var(--primary); transition: 0.3s; }
+
+        /* PRODUSE */
+        .container { max-width: 1200px; margin: 40px auto; padding: 20px; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
+        .product-card { background: var(--card-bg); border-radius: 12px; border: 1px solid #333; text-align: center; padding-bottom: 20px; transition: 0.3s; overflow: hidden; }
         .product-card:hover { border-color: var(--primary); transform: translateY(-5px); }
         .product-img { height: 200px; background: #000; display: flex; align-items: center; justify-content: center; }
         .product-img img { max-width: 100%; max-height: 100%; object-fit: contain; }
         .price { font-size: 1.5rem; color: var(--primary); font-weight: bold; margin: 15px 0; display: block; }
-        .btn-cart { background: var(--primary); color: white; border: none; padding: 12px; width: 80%; border-radius: 6px; font-weight: bold; cursor: pointer; transition: 0.3s; }
+        .btn-buy { background: var(--primary); color: white; border: none; padding: 12px; width: 80%; border-radius: 6px; font-weight: bold; cursor: pointer; }
 
-        /* MODAL & FORMULAR */
+        /* MODAL COMANDA */
         .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 3000; padding: 20px; box-sizing: border-box; overflow-y: auto; }
-        .modal-content { max-width: 550px; margin: 20px auto; background: var(--card-bg); padding: 30px; border-radius: 15px; border: 1px solid var(--primary); position: relative; }
+        .modal-content { max-width: 500px; margin: 20px auto; background: var(--card-bg); padding: 30px; border-radius: 15px; border: 1px solid var(--primary); position: relative; }
         .close-modal { position: absolute; right: 20px; top: 15px; color: var(--danger); font-size: 2rem; cursor: pointer; }
         .form-group { margin-bottom: 15px; text-align: left; }
-        .form-group label { display: block; color: #888; font-size: 0.85rem; margin-bottom: 5px; }
-        .form-group input, .form-group textarea, .form-group select { width: 100%; padding: 12px; background: #000; border: 1px solid #333; color: white; border-radius: 6px; box-sizing: border-box; font-size: 1rem; }
-        .cart-summary { background: #222; padding: 15px; border-radius: 8px; margin-bottom: 20px; border-left: 4px solid var(--primary); }
+        .form-group input, .form-group textarea, .form-group select { width: 100%; padding: 12px; background: #000; border: 1px solid #333; color: white; border-radius: 6px; box-sizing: border-box; }
 
         @media (max-width: 768px) {
-            .nav-links { position: fixed; right: -100%; top: 75px; background: #000; width: 100%; height: 100vh; flex-direction: column; align-items: center; transition: 0.5s; padding-top: 50px; }
+            .burger { display: flex; }
+            .nav-links { position: fixed; right: -100%; top: 75px; background: #000; width: 100%; height: 100vh; flex-direction: column; align-items: center; transition: 0.5s; padding-top: 40px; }
             .nav-links.active { right: 0; }
-            .nav-links li { margin: 20px 0; }
-            .burger { display: block; }
         }
     </style>
 </head>
 <body>
 
 <div class="sticky-social">
-    <a href="https://www.instagram.com" target="_blank" class="social-tag s-ig">📸 <span>Instagram</span></a>
-    <a href="#" class="social-tag s-fb">f <span>Facebook</span></a>
+    <a href="https://instagram.com" target="_blank" class="social-tag">📸 <span>Instagram</span></a>
 </div>
 
-<div class="top-bar">🚚 LIVRARE RAPIDĂ - PLATA RAMBURS LA PRIMIRE</div>
+<div class="top-bar">🚚 PLATA RAMBURS LA LIVRARE - VERIFICARE COLET</div>
 
 <nav>
-    <a href="#" class="logo" onclick="location.reload()">OZI SHOP</a>
+    <a href="#" class="logo">OZI SHOP</a>
     <div class="nav-actions">
-        <button class="cart-trigger" onclick="openCart()">🛒 <span class="cart-count" id="cart-count">0</span></button>
-        <div class="burger" id="burger-icon" onclick="toggleMenu()">
-            <div class="line1"></div><div class="line2"></div><div class="line3"></div>
-        </div>
+        <button class="cart-btn" onclick="openCart()">🛒 <span class="cart-count" id="count">0</span></button>
+        <div class="burger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
     </div>
-    <ul class="nav-links" id="nav-links">
-        <li><a onclick="scrollToSection('electronice')">Electronice</a></li>
-        <li><a onclick="scrollToSection('haine')">Haine</a></li>
-        <li><a onclick="scrollToSection('incaltaminte')">Încălțăminte</a></li>
-        <li><a href="https://wa.me">Contact</a></li>
+    <ul class="nav-links" id="menu">
+        <li><a onclick="scrollToSec('electronice')">Electronice</a></li>
+        <li><a onclick="scrollToSec('haine')">Haine</a></li>
+        <li><a onclick="scrollToSec('incaltaminte')">Încălțăminte</a></li>
     </ul>
 </nav>
 
-<div class="hero">
-    <h1 style="font-size: 2.5rem;">Ozi Online Store</h1>
-</div>
-
-<h2 class="section-title" id="electronice">Electronice</h2>
+<div id="electronice"><h2 style="text-align:center; color:var(--primary); margin-top:50px;">ELECTRONICE</h2></div>
 <div class="container">
     <div class="product-card">
         <div class="product-img"><img src="imagini/cooler-fata.avif" alt="Cooler"></div>
         <h3>Cooler Gaming RGB</h3>
         <span class="price">125 RON</span>
-        <button class="btn-cart" onclick="addToCart('Cooler Gaming RGB', 125)">Adaugă în Coș</button>
+        <button class="btn-buy" onclick="addToCart('Cooler RGB', 125)">Adaugă în Coș</button>
     </div>
 </div>
 
-<h2 class="section-title" id="haine">Haine</h2>
+<div id="haine"><h2 style="text-align:center; color:var(--primary);">HAINE</h2></div>
 <div class="container">
     <div class="product-card">
         <div class="product-img"><img src="https://images.unsplash.com" alt="Tricou"></div>
-        <h3>Tricou Premium Cotton</h3>
+        <h3>Tricou Cotton Premium</h3>
         <span class="price">89 RON</span>
-        <button class="btn-cart" onclick="addToCart('Tricou Premium', 89)">Adaugă în Coș</button>
+        <button class="btn-buy" onclick="addToCart('Tricou Premium', 89)">Adaugă în Coș</button>
     </div>
 </div>
 
-<h2 class="section-title" id="incaltaminte">Încălțăminte</h2>
+<div id="incaltaminte"><h2 style="text-align:center; color:var(--primary);">ÎNCĂLȚĂMINTE</h2></div>
 <div class="container">
     <div class="product-card">
         <div class="product-img"><img src="https://images.unsplash.com" alt="Adidasi"></div>
-        <h3>Adidași Sport Red-Line</h3>
+        <h3>Adidași Sport Red</h3>
         <span class="price">210 RON</span>
-        <button class="btn-cart" onclick="addToCart('Adidasi Sport', 210)">Adaugă în Coș</button>
+        <button class="btn-buy" onclick="addToCart('Adidasi Sport', 210)">Adaugă în Coș</button>
     </div>
 </div>
 
-<!-- MODAL COȘ -->
+<!-- MODAL CHECKOUT -->
 <div id="cartModal" class="modal">
     <div class="modal-content">
         <span class="close-modal" onclick="closeCart()">&times;</span>
-        <h2 style="color: var(--primary); margin-top: 0;">Finalizare Comandă</h2>
-        <div class="cart-summary" id="cart-summary"><p>Coș gol.</p></div>
+        <h2 style="color:var(--primary); margin-top:0;">Finalizează Comanda</h2>
+        <div id="cart-list" style="background:#222; padding:15px; border-radius:8px; margin-bottom:20px;"></div>
 
-        <!-- FORMULAR CORECTAT -->
-        <form action="https://formspree.io" method="POST" id="order-form" style="display: none;">
-            <input type="hidden" name="Produse" id="form-items">
-            <input type="hidden" name="Total" id="form-total">
-            <div class="form-group"><label>Nume Complet</label><input type="text" name="Nume" required></div>
-            <div class="form-group"><label>Telefon</label><input type="tel" name="Telefon" required></div>
-            <div class="form-group"><label>Adresă Livrare</label><textarea name="Adresa" rows="2" required></textarea></div>
-            <div class="form-group"><label>Cod Poștal</label><input type="text" name="Cod_Postal"></div>
-            <div class="form-group">
-                <label>Livrare</label>
-                <select name="Livrare"><option value="Curier">Curier (20 RON)</option><option value="Ridicare">Ridicare Personală</option></select>
-            </div>
-            <button type="submit" class="btn-cart" style="width:100%; background:var(--danger);">TRIMITE COMANDA</button>
+        <form action="https://formspree.io" method="POST" id="checkout-form">
+            <input type="hidden" name="Produse" id="form-p">
+            <input type="hidden" name="Total" id="form-t">
+            <div class="form-group"><input type="text" name="Nume" placeholder="Nume Complet" required></div>
+            <div class="form-group"><input type="tel" name="Telefon" placeholder="Telefon" required></div>
+            <div class="form-group"><textarea name="Adresa" placeholder="Adresa de Livrare" required></textarea></div>
+            <div class="form-group"><input type="text" name="Cod_Postal" placeholder="Cod Poștal"></div>
+            <button type="submit" class="btn-buy" style="width:100%; background:var(--danger); padding:15px;">TRIMITE COMANDA</button>
         </form>
     </div>
 </div>
 
 <script>
     let cart = [];
-    function toggleMenu() {
-        document.getElementById('nav-links').classList.toggle('active');
-        document.getElementById('burger-icon').classList.toggle('toggle');
-    }
-    function scrollToSection(id) {
-        document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
-        if(window.innerWidth <= 768) toggleMenu();
-    }
+    function toggleMenu() { document.getElementById('menu').classList.toggle('active'); }
+    function scrollToSec(id) { document.getElementById(id).scrollIntoView({behavior:'smooth'}); toggleMenu(); }
+    
     function addToCart(name, price) {
         cart.push({name, price});
-        document.getElementById('cart-count').innerText = cart.length;
+        document.getElementById('count').innerText = cart.length;
         alert("Produs adăugat!");
     }
+
     function openCart() {
-        const modal = document.getElementById('cartModal');
-        const summary = document.getElementById('cart-summary');
-        const form = document.getElementById('order-form');
-        modal.style.display = 'block';
-        if(cart.length === 0) {
-            summary.innerHTML = "<p>Coșul este gol.</p>";
-            form.style.display = "none";
-        } else {
-            form.style.display = "block";
-            let total = 0; let items = "";
-            summary.innerHTML = cart.map(i => { total += i.price; items += i.name + ", "; return `<p>${i.name} - ${i.price} RON</p>`; }).join('') + `<strong>Total: ${total} RON</strong>`;
-            document.getElementById('form-items').value = items;
-            document.getElementById('form-total').value = total + " RON";
-        }
+        if(cart.length === 0) { alert("Coșul este gol!"); return; }
+        document.getElementById('cartModal').style.display = 'block';
+        let total = 0; let names = "";
+        cart.forEach(i => { total += i.price; names += i.name + ", "; });
+        document.getElementById('cart-list').innerHTML = `Produse: <b>${names}</b><br>Total: <b>${total} RON</b>`;
+        document.getElementById('form-p').value = names;
+        document.getElementById('form-t').value = total + " RON";
     }
+
     function closeCart() { document.getElementById('cartModal').style.display = 'none'; }
     window.onclick = function(e) { if(e.target == document.getElementById('cartModal')) closeCart(); }
 </script>
+
 </body>
 </html>
