@@ -4,163 +4,161 @@ html
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ozi Shop | Magazin Online Premium</title>
-    <script src="https://cdn.jsdelivr.net"></script>
+    <title>Ozi Shop | Premium Store</title>
+    <!-- Scriptul EmailJS - Încărcat PRIORITAR -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net"></script>
     <style>
         :root {
             --primary: #25d366; --danger: #e74c3c; --dark-bg: #0b0b0b;
-            --card-bg: #161616; --gold: #f1c40f; --text-main: #ffffff;
-            --insta: #e1306c; --fb: #4267B2;
+            --card-bg: #161616; --text: #ffffff;
         }
-        body { font-family: 'Segoe UI', sans-serif; margin: 0; background: var(--dark-bg); color: var(--text-main); line-height: 1.6; scroll-behavior: smooth; overflow-x: hidden; }
+        body { font-family: 'Segoe UI', sans-serif; margin: 0; background: var(--dark-bg); color: var(--text); line-height: 1.6; overflow-x: hidden; }
         
-        /* DESIGNUL TĂU ORIGINAL - PĂSTRAT INTACT */
+        /* SOCIAL & TOP BAR */
         .sticky-social { position: fixed; top: 50%; transform: translateY(-50%); left: 0; z-index: 2000; display: flex; flex-direction: column; }
-        .social-tag { width: 45px; height: 45px; display: flex; align-items: center; padding-left: 12px; color: white; text-decoration: none; font-weight: bold; transition: width 0.3s; overflow: hidden; border-radius: 0 5px 5px 0; margin-bottom: 5px; }
-        .social-tag:hover { width: 180px; }
-        .social-tag span { margin-left: 15px; opacity: 0; transition: 0.3s; white-space: nowrap; font-size: 0.75rem; }
-        .social-tag:hover span { opacity: 1; }
-        .s-ig { background: var(--insta); } .s-fb { background: var(--fb); }
+        .social-tag { width: 45px; height: 45px; display: flex; align-items: center; padding-left: 12px; color: white; text-decoration: none; font-weight: bold; transition: 0.3s; overflow: hidden; border-radius: 0 5px 5px 0; margin-bottom: 5px; }
+        .social-tag:hover { width: 150px; }
+        .s-ig { background: #e1306c; } .s-fb { background: #4267B2; }
 
-        .top-bar { background: var(--danger); color: white; text-align: center; padding: 8px; font-size: 0.8rem; font-weight: bold; position: sticky; top: 0; z-index: 1100; letter-spacing: 1px; }
+        .top-bar { background: var(--danger); color: white; text-align: center; padding: 8px; font-size: 0.8rem; font-weight: bold; position: sticky; top: 0; z-index: 1100; }
         nav { background: #000; padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 32px; z-index: 1500; border-bottom: 1px solid #222; }
-        .logo { font-size: 1.6rem; font-weight: bold; color: var(--primary); text-decoration: none; }
+        .logo { font-size: 1.6rem; font-weight: bold; color: var(--primary); text-decoration: none; cursor: pointer; }
         
-        .nav-actions { display: flex; align-items: center; gap: 15px; }
         .cart-trigger { background: none; border: none; color: white; font-size: 1.4rem; cursor: pointer; position: relative; }
         .cart-count { position: absolute; top: -8px; right: -10px; background: var(--primary); color: black; font-size: 0.7rem; padding: 2px 6px; border-radius: 50%; font-weight: bold; }
 
-        .nav-links { display: flex; list-style: none; margin: 0; padding: 0; }
-        .nav-links li { margin-left: 20px; }
-        .nav-links a { text-decoration: none; color: white; font-size: 0.8rem; text-transform: uppercase; font-weight: bold; cursor: pointer; }
-        
-        .features-bar { background: #111; display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); text-align: center; padding: 15px 5%; border-bottom: 1px solid #222; gap: 10px; font-size: 0.75rem; }
-
-        .container { max-width: 1200px; margin: 0 auto; padding: 20px; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        /* GRID PRODUSE */
+        .container { max-width: 1200px; margin: 0 auto; padding: 40px 20px; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
         .p-card { background: var(--card-bg); border-radius: 12px; overflow: hidden; border: 1px solid #333; text-align: center; padding-bottom: 20px; transition: 0.3s; }
+        .p-card:hover { border-color: var(--primary); }
         .p-img { height: 250px; background: #000; display: flex; align-items: center; justify-content: center; }
         .p-img img { max-width: 100%; max-height: 100%; object-fit: contain; }
         .thumbs { display: flex; justify-content: center; gap: 8px; padding: 10px; background: #111; }
-        .thumbs img { width: 45px; height: 45px; object-fit: cover; cursor: pointer; border: 1px solid #333; border-radius: 4px; }
-        .btn-add { background: var(--primary); color: white; border: none; padding: 12px; width: 85%; border-radius: 6px; font-weight: bold; cursor: pointer; margin-top: 15px; }
+        .thumbs img { width: 40px; height: 40px; cursor: pointer; border: 1px solid #333; border-radius: 4px; }
+        .btn-add { background: var(--primary); color: black; border: none; padding: 12px; width: 85%; border-radius: 6px; font-weight: bold; cursor: pointer; margin-top: 15px; }
 
-        /* MODALUL DE COȘ (Checkout) */
-        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 3000; padding: 20px; box-sizing: border-box; overflow-y: auto; }
-        .modal-content { max-width: 500px; margin: 20px auto; background: var(--card-bg); padding: 30px; border-radius: 15px; border: 1px solid var(--primary); position: relative; }
+        /* MODAL COȘ */
+        .modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.95); z-index: 9999; padding: 20px; overflow-y: auto; }
+        .modal-content { max-width: 450px; margin: 40px auto; background: var(--card-bg); padding: 25px; border-radius: 15px; border: 1px solid var(--primary); position: relative; }
         .close-modal { position: absolute; right: 20px; top: 15px; color: var(--danger); font-size: 2rem; cursor: pointer; }
-        
-        input { width: 100%; padding: 10px; margin: 10px 0; background: #222; border: 1px solid #444; color: white; border-radius: 5px; }
         .cart-item { display: flex; justify-content: space-between; border-bottom: 1px solid #333; padding: 10px 0; font-size: 0.9rem; }
-
-        .whatsapp-float { position: fixed; width: 55px; height: 55px; bottom: 25px; right: 25px; background: #25d366; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none; z-index: 1000; font-weight: bold; animation: bounce 2s infinite; }
-        @keyframes bounce { 0%, 100% {transform: translateY(0)} 50% {transform: translateY(-10px)} }
+        input { width: 100%; padding: 12px; margin: 10px 0; background: #111; border: 1px solid #444; color: white; border-radius: 6px; box-sizing: border-box; }
     </style>
 </head>
 <body>
 
 <div class="sticky-social">
-    <a href="https://instagram.com" target="_blank" class="social-tag s-ig">📸 <span>Instagram</span></a>
+    <a href="#" class="social-tag s-ig">📸 <span>Instagram</span></a>
     <a href="#" class="social-tag s-fb">f <span>Facebook</span></a>
 </div>
 
-<div class="top-bar">🚚 LIVRARE RAPIDĂ - PLATA RAMBURS LA LIVRARE</div>
+<div class="top-bar">🚚 LIVRARE RAPIDĂ - PLATĂ RAMBURS</div>
 
 <nav>
-    <a href="#" class="logo">OZI SHOP</a>
-    <div class="nav-actions">
-        <button class="cart-trigger" onclick="toggleCart()">🛒 <span class="cart-count" id="count">0</span></button>
-    </div>
+    <div class="logo" onclick="location.reload()">OZI SHOP</div>
+    <button class="cart-trigger" id="btnDeschideCos">🛒 <span class="cart-count" id="numarProduse">0</span></button>
 </nav>
 
-<div class="features-bar">
-    <div>📦 Livrare 24h</div><div>🛡️ Garanție</div><div>🤝 Ramburs</div><div>🔄 Retur 14 zile</div>
-</div>
-
-<!-- SECȚIUNE ELECTRONICE -->
-<h2 style="text-align:center; margin-top:40px; color:var(--primary);" id="electronice">ELECTRONICE & GAMING</h2>
 <div class="container">
+    <!-- Produs 1 -->
     <div class="p-card">
-        <div class="p-img"><img src="imagini/cooler-fata.avif" id="mainImg1"></div>
+        <div class="p-img"><img src="imagini/cooler-fata.avif" id="viewPrincipal1"></div>
         <div class="thumbs">
-            <img src="imagini/cooler-fata.avif" onclick="document.getElementById('mainImg1').src='imagini/cooler-fata.avif'">
-            <img src="imagini/cooler-spate.avif" onclick="document.getElementById('mainImg1').src='imagini/cooler-spate.avif'">
+            <img src="imagini/cooler-fata.avif" onclick="document.getElementById('viewPrincipal1').src='imagini/cooler-fata.avif'">
+            <img src="imagini/cooler-spate.avif" onclick="document.getElementById('viewPrincipal1').src='imagini/cooler-spate.avif'">
         </div>
-        <h3>Cooler Gaming RGB Pro</h3>
-        <span style="color:var(--primary); font-size:1.5rem; font-weight:bold;">125 RON</span>
-        <button class="btn-add" onclick="addToCart('Cooler RGB Pro', 125)">Adaugă în Coș</button>
+        <h3>Cooler RGB Pro</h3>
+        <p style="color:var(--primary); font-weight:bold; font-size:1.3rem;">125 RON</p>
+        <button class="btn-add" onclick="adaugaProdus('Cooler RGB Pro', 125)">Adaugă în Coș</button>
     </div>
 </div>
 
-<!-- MODAL CHECKOUT -->
-<div id="cartModal" class="modal">
+<!-- Modal Coș -->
+<div id="ecranCos" class="modal">
     <div class="modal-content">
-        <span class="close-modal" onclick="toggleCart()">&times;</span>
-        <h2 style="color:var(--primary)">Coșul tău</h2>
-        <div id="cartItems"></div>
-        <h3 id="totalPrice">Total: 0 RON</h3>
-        <hr>
-        <form id="orderForm">
-            <input type="text" id="custName" placeholder="Nume Complet" required>
-            <input type="tel" id="custPhone" placeholder="Telefon" required>
-            <input type="text" id="custAddr" placeholder="Adresa de livrare" required>
-            <button type="submit" class="btn-add" style="width:100%">TRIMITE COMANDA</button>
+        <span class="close-modal" id="btnInchideCos">&times;</span>
+        <h2 style="color:var(--primary)">Finalizare Comandă</h2>
+        <div id="listaProduseCos"></div>
+        <h3 id="afisajTotal" style="margin-top:20px; border-top:1px solid #333; padding-top:10px;">Total: 0 RON</h3>
+        
+        <form id="formFinal">
+            <input type="text" id="nume" placeholder="Nume Complet" required>
+            <input type="tel" id="telefon" placeholder="Telefon" required>
+            <input type="text" id="adresa" placeholder="Adresa de livrare" required>
+            <button type="submit" class="btn-add" style="width:100%; background:white; color:black; margin-top:15px;">TRIMITE COMANDA</button>
         </form>
     </div>
 </div>
 
-<a href="https://wa.me" class="whatsapp-float">WA</a>
-
 <script>
-    // INITIALIZARE EMAILJS (Pune cheia ta aici!)
-    (function(){ emailjs.init("YOUR_PUBLIC_KEY"); })();
+    // === CONFIGURARE (AICI PUI CHEILE TALE) ===
+    const CHEIE_PUBLICA = "cOOSvCrSgAYqSrpDP"; 
+    const SERVICE_ID = "service_wtcgsi9";
+    const TEMPLATE_ID = "";
+    // ==========================================
 
-    let cart = [];
+    (function() { emailjs.init(CHEIE_PUBLICA); })();
 
-    function addToCart(name, price) {
-        cart.push({name, price});
-        updateCartUI();
-        alert(name + " a fost adăugat!");
+    let cosCurent = [];
+
+    function adaugaProdus(nume, pret) {
+        cosCurent.push({ nume, pret });
+        document.getElementById('numarProduse').innerText = cosCurent.length;
+        afiseazaCos();
+        alert(nume + " a fost adăugat!");
     }
 
-    function updateCartUI() {
-        document.getElementById('count').innerText = cart.length;
-        const itemsDiv = document.getElementById('cartItems');
-        let total = 0;
-        itemsDiv.innerHTML = cart.map((item, index) => {
-            total += item.price;
-            return `<div class="cart-item"><span>${item.name}</span> <span>${item.price} RON</span></div>`;
+    function afiseazaCos() {
+        const container = document.getElementById('listaProduseCos');
+        let suma = 0;
+        container.innerHTML = cosCurent.map(item => {
+            suma += item.pret;
+            return `<div class="cart-item"><span>${item.nume}</span><span>${item.pret} RON</span></div>`;
         }).join('');
-        document.getElementById('totalPrice').innerText = "Total: " + total + " RON";
+        document.getElementById('afisajTotal').innerText = "Total: " + suma + " RON";
     }
 
-    function toggleCart() {
-        const m = document.getElementById('cartModal');
-        m.style.display = (m.style.display === 'block') ? 'none' : 'block';
-    }
+    // Deschidere/Inchidere
+    const modal = document.getElementById('ecranCos');
+    document.getElementById('btnDeschideCos').onclick = () => modal.style.display = 'block';
+    document.getElementById('btnInchideCos').onclick = () => modal.style.display = 'none';
 
-    document.getElementById('orderForm').onsubmit = function(e) {
+    // Trimitere Date
+    document.getElementById('formFinal').onsubmit = function(e) {
         e.preventDefault();
-        if(cart.length === 0) return alert("Coșul e gol!");
+        if(cosCurent.length === 0) return alert("Coșul e gol!");
 
         const btn = e.target.querySelector('button');
         btn.innerText = "Se trimite...";
-        
-        const orderInfo = cart.map(i => i.name + " (" + i.price + " RON)").join(", ");
+        btn.disabled = true;
 
-        emailjs.send("cOOSvCrSgAYqSrpDP", "service_wtcgsi9", {
-            from_name: document.getElementById('custName').value,
-            phone: document.getElementById('custPhone').value,
-            address: document.getElementById('custAddr').value,
-            order_content: orderInfo,
-            total_price: document.getElementById('totalPrice').innerText
-        }).then(() => {
-            alert("Comandă trimisă!");
-            cart = [];
-            updateCartUI();
-            toggleCart();
-            e.target.reset();
-        }).finally(() => { btn.innerText = "TRIMITE COMANDA"; });
+        const dateComanda = {
+            from_name: document.getElementById('nume').value,
+            phone: document.getElementById('telefon').value,
+            address: document.getElementById('adresa').value,
+            order_content: cosCurent.map(p => p.nume + " (" + p.pret + " RON)").join(", "),
+            total_price: document.getElementById('afisajTotal').innerText
+        };
+
+        emailjs.send(SERVICE_ID, TEMPLATE_ID, dateComanda)
+            .then(() => {
+                alert("Comanda a ajuns la noi! Mulțumim.");
+                cosCurent = [];
+                document.getElementById('numarProduse').innerText = "0";
+                afiseazaCos();
+                modal.style.display = 'none';
+                e.target.reset();
+            })
+            .catch((err) => {
+                alert("Eroare! Verifică dacă cheile EmailJS sunt corecte.");
+                console.error(err);
+            })
+            .finally(() => {
+                btn.innerText = "TRIMITE COMANDA";
+                btn.disabled = false;
+            });
     };
 </script>
+
 </body>
 </html>
