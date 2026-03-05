@@ -4,7 +4,7 @@ html
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ozi Shop | Premium Magazin Online</title>
+    <title>Ozi Shop | Magazin Online Premium</title>
     <meta name="referrer" content="origin">
     <style>
         :root {
@@ -14,7 +14,7 @@ html
         }
         body { font-family: 'Segoe UI', sans-serif; margin: 0; background: var(--dark-bg); color: var(--text-main); line-height: 1.6; scroll-behavior: smooth; overflow-x: hidden; }
         
-        /* SOCIAL STÂNGA */
+        /* BARA SOCIALĂ STÂNGA */
         .sticky-social { position: fixed; top: 50%; transform: translateY(-50%); left: 0; z-index: 2000; display: flex; flex-direction: column; }
         .social-tag { width: 45px; height: 45px; display: flex; align-items: center; padding-left: 12px; color: white; text-decoration: none; font-weight: bold; transition: width 0.3s; overflow: hidden; border-radius: 0 5px 5px 0; margin-bottom: 5px; }
         .social-tag:hover { width: 180px; }
@@ -23,18 +23,19 @@ html
         .s-ig { background: var(--insta); } .s-fb { background: var(--fb); }
 
         /* NAVIGARE */
-        .top-bar { background: var(--danger); color: white; text-align: center; padding: 8px; font-size: 0.8rem; font-weight: bold; position: sticky; top: 0; z-index: 1100; }
+        .top-bar { background: var(--danger); color: white; text-align: center; padding: 8px; font-size: 0.8rem; font-weight: bold; position: sticky; top: 0; z-index: 1100; letter-spacing: 1px; }
         nav { background: #000; padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 32px; z-index: 1500; border-bottom: 1px solid #222; }
         .logo { font-size: 1.6rem; font-weight: bold; color: var(--primary); text-decoration: none; }
+        
         .nav-actions { display: flex; align-items: center; gap: 15px; }
         .cart-trigger { background: none; border: none; color: white; font-size: 1.4rem; cursor: pointer; position: relative; }
         .cart-count { position: absolute; top: -8px; right: -10px; background: var(--primary); color: black; font-size: 0.7rem; padding: 2px 6px; border-radius: 50%; font-weight: bold; }
-        
+
         .nav-links { display: flex; list-style: none; margin: 0; padding: 0; }
         .nav-links li { margin-left: 20px; }
         .nav-links a { text-decoration: none; color: white; font-size: 0.8rem; text-transform: uppercase; font-weight: bold; cursor: pointer; }
-
-        .burger { display: none; cursor: pointer; flex-direction: column; gap: 5px; }
+        
+        .burger { display: none; cursor: pointer; flex-direction: column; gap: 5px; z-index: 1600; }
         .burger span { width: 25px; height: 3px; background: var(--primary); transition: 0.4s; }
         .toggle .l1 { transform: rotate(-45deg) translate(-5px, 6px); }
         .toggle .l2 { opacity: 0; }
@@ -44,19 +45,23 @@ html
         .features-bar { background: #111; display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); text-align: center; padding: 15px 5%; border-bottom: 1px solid #222; gap: 10px; font-size: 0.75rem; }
 
         /* PRODUSE & THUMBS */
-        .container { max-width: 1200px; margin: 40px auto; padding: 20px; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
-        .p-card { background: var(--card-bg); border-radius: 12px; border: 1px solid #333; overflow: hidden; text-align: center; padding-bottom: 20px; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 20px; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .p-card { background: var(--card-bg); border-radius: 12px; overflow: hidden; border: 1px solid #333; text-align: center; padding-bottom: 20px; transition: 0.3s; }
         .p-img { height: 250px; background: #000; display: flex; align-items: center; justify-content: center; }
         .p-img img { max-width: 100%; max-height: 100%; object-fit: contain; }
         .thumbs { display: flex; justify-content: center; gap: 8px; padding: 10px; background: #111; }
         .thumbs img { width: 45px; height: 45px; object-fit: cover; cursor: pointer; border: 1px solid #333; border-radius: 4px; }
-        .btn-buy { background: var(--primary); color: white; border: none; padding: 12px; width: 85%; border-radius: 6px; font-weight: bold; cursor: pointer; margin-top: 15px; }
+        .btn-add { background: var(--primary); color: white; border: none; padding: 12px; width: 85%; border-radius: 6px; font-weight: bold; cursor: pointer; margin-top: 15px; }
 
-        /* FOOTER LEGAL ROMANIA */
+        /* FOOTER & ANPC */
         footer { background: #000; color: #777; padding: 40px 5%; text-align: center; border-top: 1px solid #222; margin-top: 50px; }
         .footer-legal { display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap; margin-top: 20px; }
-        .footer-legal a img { height: 45px; filter: grayscale(100%); transition: 0.3s; }
-        .footer-legal a:hover img { filter: grayscale(0%); }
+        .footer-legal img { height: 40px; filter: grayscale(100%); transition: 0.3s; }
+        .footer-legal img:hover { filter: grayscale(0%); }
+
+        /* WHATSAPP FLOAT */
+        .whatsapp-float { position: fixed; width: 55px; height: 55px; bottom: 25px; right: 25px; background: #25d366; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none; z-index: 1000; font-weight: bold; animation: bounce 2s infinite; }
+        @keyframes bounce { 0%, 100% {transform: translateY(0)} 50% {transform: translateY(-10px)} }
 
         /* MODAL */
         .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 3000; padding: 20px; box-sizing: border-box; overflow-y: auto; }
@@ -80,8 +85,8 @@ html
 <div class="top-bar">🚚 LIVRARE RAPIDĂ - PLATA RAMBURS LA LIVRARE</div>
 
 <nav>
-    <a href="#" class="logo">OZI SHOP</a>
-    <div style="display: flex; align-items: center; gap: 15px;">
+    <a href="#" class="logo" onclick="location.reload()">OZI SHOP</a>
+    <div class="nav-actions">
         <button class="cart-trigger" onclick="openCart()">🛒 <span class="cart-count" id="count">0</span></button>
         <div class="burger" id="burger" onclick="toggleMenu()"><span class="l1"></span><span class="l2"></span><span class="l3"></span></div>
     </div>
@@ -96,49 +101,47 @@ html
     <div>📦 Livrare 24h</div><div>🛡️ Garanție</div><div>🤝 Ramburs</div><div>🔄 Retur 14 zile</div>
 </div>
 
-<div id="electronice"><h2 style="text-align:center; margin-top:40px; color:var(--primary);">ELECTRONICE</h2></div>
+<h2 style="text-align:center; margin-top:40px; color:var(--primary);" id="electronice">ELECTRONICE & GAMING</h2>
 <div class="container">
-    <div class="p-card">
+    <div class="product-card">
         <div class="p-img"><img src="imagini/cooler-fata.avif" id="mainImg"></div>
         <div class="thumbs">
             <img src="imagini/cooler-fata.avif" onclick="document.getElementById('mainImg').src='imagini/cooler-fata.avif'">
             <img src="imagini/cooler-spate.avif" onclick="document.getElementById('mainImg').src='imagini/cooler-spate.avif'">
+            <img src="imagini/cooler-led.avif" onclick="document.getElementById('mainImg').src='imagini/cooler-led.avif'">
         </div>
         <h3>Cooler Gaming RGB Pro</h3>
         <span style="color:var(--primary); font-size:1.5rem; font-weight:bold;">125 RON</span>
-        <button class="btn-buy" onclick="add('Cooler RGB Pro', 125)">Adaugă în Coș</button>
+        <button class="btn-add" onclick="add('Cooler RGB Pro', 125)">Adaugă în Coș</button>
     </div>
 </div>
 
-<div id="haine"><h2 style="text-align:center; color:var(--primary);">HAINE</h2></div>
+<h2 style="text-align:center; color:var(--primary);" id="haine">HAINE & FASHION</h2>
 <div class="container">
-    <div class="p-card">
+    <div class="product-card">
         <div class="p-img"><img src="https://images.unsplash.com"></div>
         <h3>Tricou Cotton Premium</h3>
         <span style="color:var(--primary); font-size:1.5rem; font-weight:bold;">89 RON</span>
-        <button class="btn-buy" onclick="add('Tricou Premium', 89)">Adaugă în Coș</button>
+        <button class="btn-add" onclick="add('Tricou Premium', 89)">Adaugă în Coș</button>
     </div>
 </div>
 
-<div id="shoes"><h2 style="text-align:center; color:var(--primary);">ÎNCĂLȚĂMINTE</h2></div>
+<h2 style="text-align:center; color:var(--primary);" id="shoes">ÎNCĂLȚĂMINTE</h2>
 <div class="container">
-    <div class="p-card">
+    <div class="product-card">
         <div class="p-img"><img src="https://images.unsplash.com"></div>
-        <h3>Adidași Sport Red</h3>
+        <h3>Adidași Sport Red-Line</h3>
         <span style="color:var(--primary); font-size:1.5rem; font-weight:bold;">210 RON</span>
-        <button class="btn-buy" onclick="add('Adidasi Sport', 210)">Adaugă în Coș</button>
+        <button class="btn-add" onclick="add('Adidași Sport', 210)">Adaugă în Coș</button>
     </div>
 </div>
 
 <footer>
     <p><b>OZI SHOP</b> - Magazin Online Premium</p>
-    <p>Telefon: 0722 992 144 | Email: ozarchevici1994@yahoo.ro</p>
-    
     <div class="footer-legal">
         <a href="https://anpc.ro" target="_blank"><img src="https://wp-mkt.s3.eu-central-1.amazonaws.com" alt="ANPC SAL"></a>
         <a href="https://anpc.ro" target="_blank"><img src="https://wp-mkt.s3.eu-central-1.amazonaws.com" alt="ANPC SOL"></a>
     </div>
-    <p style="font-size: 0.7rem; margin-top: 20px;">© 2024 Toate drepturile rezervate.</p>
 </footer>
 
 <div id="cartModal" class="modal">
@@ -150,25 +153,24 @@ html
             <input type="text" id="nume" placeholder="Nume Complet" required style="width:100%; padding:12px; background:#000; border:1px solid #333; color:white; border-radius:6px; margin-bottom:10px;">
             <input type="tel" id="tel" placeholder="Telefon" required style="width:100%; padding:12px; background:#000; border:1px solid #333; color:white; border-radius:6px; margin-bottom:10px;">
             <textarea id="adr" placeholder="Adresa Livrare" required style="width:100%; padding:12px; background:#000; border:1px solid #333; color:white; border-radius:6px; margin-bottom:10px;"></textarea>
-            <input type="text" id="zip" placeholder="Cod Poștal" style="width:100%; padding:12px; background:#000; border:1px solid #333; color:white; border-radius:6px; margin-bottom:10px;">
-            <select id="ship" style="width:100%; padding:12px; background:#000; border:1px solid #333; color:white; border-radius:6px; margin-bottom:10px;">
-                <option value="Curier">Curier (20 RON)</option>
-                <option value="Ridicare">Ridicare Personală</option>
-            </select>
-            <button type="submit" id="submitBtn" class="btn-buy" style="width:100%; background:var(--danger); padding:15px;">TRIMITE COMANDA</button>
+            <input type="text" id="zip" placeholder="Cod Poștal (Optional)" style="width:100%; padding:12px; background:#000; border:1px solid #333; color:white; border-radius:6px; margin-bottom:10px;">
+            <select id="ship" style="width:100%; padding:12px; background:#000; border:1px solid #333; color:white; border-radius:6px; margin-bottom:10px;"><option value="Curier">Curier (20 RON)</option><option value="Ridicare">Ridicare Personală</option></select>
+            <button type="submit" id="submitBtn" class="btn-add" style="width:100%; background:var(--danger); padding:15px;">TRIMITE COMANDA</button>
         </form>
         <div id="status" style="margin-top:10px; font-weight:bold; text-align:center;"></div>
     </div>
 </div>
 
+<a href="https://wa.me" class="whatsapp-float">WA</a>
+
 <script>
     let cart = [];
     function toggleMenu() { document.getElementById('menu').classList.toggle('active'); document.getElementById('burger').classList.toggle('toggle'); }
     function scrollToSec(id) { document.getElementById(id).scrollIntoView({behavior:'smooth'}); if(window.innerWidth<=768) toggleMenu(); }
-    function add(n, p) { cart.push({n, p}); document.getElementById('count').innerText = cart.length; alert("Adăugat!"); }
+    function add(n, p) { cart.push({n, p}); document.getElementById('count').innerText = cart.length; alert("Adăugat în coș!"); }
     function openCart() {
         const m = document.getElementById('cartModal');
-        if (cart.length === 0) { alert("Coșul este gol!"); return; }
+        if (cart.length === 0) { alert("Coș gol!"); return; }
         m.style.display = 'block';
         let t = 0; let s = ""; cart.forEach(i => { t += i.p; s += i.n + ", "; });
         document.getElementById('summary').innerHTML = `Produse: <b>${s}</b><br>Total: <b>${t} RON</b>`;
@@ -179,12 +181,12 @@ html
         e.preventDefault();
         const status = document.getElementById("status"), btn = document.getElementById("submitBtn");
         btn.innerText = "Se trimite..."; btn.disabled = true;
-        let t = 0; let s = ""; cart.forEach(i => { t += i.p; s += i.n + ", "; });
-        const data = { Nume: document.getElementById("nume").value, Telefon: document.getElementById("tel").value, Adresa: document.getElementById("adr").value, CodPostal: document.getElementById("zip").value, Produse: s, Total: t + " RON" };
+        let t = 0, s = ""; cart.forEach(i => { t += i.p; s += i.n + ", "; });
+        const data = { Nume: document.getElementById("nume").value, Telefon: document.getElementById("tel").value, Adresa: document.getElementById("adr").value, CodPostal: document.getElementById("zip").value, Produse: s, Total: t + " RON", Metoda: document.getElementById("ship").value };
         try {
             const resp = await fetch("https://formspree.io", { method: "POST", body: JSON.stringify(data), headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' } });
             if (resp.ok) { status.innerHTML = "✅ Comandă trimisă!"; setTimeout(() => location.reload(), 2500); } else { throw new Error(); }
-        } catch (err) { status.innerHTML = "❌ Eroare!"; btn.disabled = false; btn.innerText = "TRIMITE COMANDA"; }
+        } catch (err) { status.innerHTML = "❌ Eroare! Încearcă WhatsApp."; btn.disabled = false; btn.innerText = "TRIMITE COMANDA"; }
     });
 </script>
 </body>
