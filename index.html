@@ -6,21 +6,6 @@ html
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ozi Shop | Premium Experience</title>
     
-    <!-- FIX ICONIȚE: Link stabil Font Awesome 6.4.0 -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com" crossorigin="anonymous">
-    <!-- ANIMAȚII -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com">
-
-    <!-- META PIXEL PLACEHOLDER -->
-    <script>
-      !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-      n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
-      n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
-      t.src=v;s=b.getElementsByTagName(e);s.parentNode.insertBefore(t,s)}(window,
-      document,'script','https://connect.facebook.net');
-      fbq('init', 'ID-PIXEL-TAU'); fbq('track', 'PageView');
-    </script>
-
     <style>
         :root {
             --primary: #25d366; --danger: #e74c3c; --dark-bg: #0b0b0b;
@@ -29,74 +14,101 @@ html
             --fb: #1877F2;
         }
 
-        * { box-sizing: border-box; }
+        * { box-sizing: border-box; outline: none; }
         body { font-family: 'Segoe UI', sans-serif; margin: 0; background: var(--dark-bg); color: var(--text-main); line-height: 1.6; scroll-behavior: smooth; overflow-x: hidden; }
 
-        /* BARA SOCIALĂ STÂNGA */
+        /* BARA SOCIALĂ STÂNGA - SIGLE SVG */
         .sticky-social { position: fixed; top: 50%; transform: translateY(-50%); left: 0; z-index: 2000; display: flex; flex-direction: column; }
-        .social-tag { width: 50px; height: 50px; display: flex; align-items: center; justify-content: flex-start; padding-left: 14px; color: white; text-decoration: none; transition: 0.4s; border-radius: 0 8px 8px 0; margin-bottom: 8px; box-shadow: 2px 5px 15px rgba(0,0,0,0.5); }
+        .social-tag { width: 50px; height: 50px; display: flex; align-items: center; justify-content: flex-start; padding-left: 10px; color: white; text-decoration: none; transition: 0.4s; border-radius: 0 8px 8px 0; margin-bottom: 8px; box-shadow: 2px 5px 15px rgba(0,0,0,0.5); }
         .social-tag:hover { width: 220px; }
-        .social-tag i { font-size: 22px; min-width: 25px; text-align: center; }
-        .social-tag span { margin-left: 15px; opacity: 0; white-space: nowrap; font-weight: bold; }
+        .social-tag svg { width: 28px; height: 28px; fill: white; flex-shrink: 0; }
+        .social-tag span { margin-left: 15px; opacity: 0; white-space: nowrap; font-weight: bold; font-size: 0.9rem; }
         .social-tag:hover span { opacity: 1; }
         .s-ig { background: var(--insta); }
         .s-fb { background: var(--fb); }
 
         /* NAVIGAȚIE */
-        .top-bar { background: var(--danger); color: white; text-align: center; padding: 10px; font-size: 0.85rem; font-weight: 800; position: sticky; top: 0; z-index: 1100; text-transform: uppercase; }
+        .top-bar { background: var(--danger); color: white; text-align: center; padding: 10px; font-size: 0.85rem; font-weight: 800; position: sticky; top: 0; z-index: 1100; text-transform: uppercase; letter-spacing: 1px; }
         nav { background: rgba(0,0,0,0.95); padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 38px; z-index: 1000; border-bottom: 1px solid #222; backdrop-filter: blur(10px); }
         .logo { font-size: 1.8rem; font-weight: 900; color: #fff; text-decoration: none; }
         .logo span { color: var(--primary); }
-        .nav-links a { text-decoration: none; color: #bbb; margin-left: 15px; font-size: 0.75rem; text-transform: uppercase; font-weight: 700; transition: 0.3s; }
+        .nav-links a { text-decoration: none; color: #bbb; margin-left: 20px; font-size: 0.8rem; text-transform: uppercase; font-weight: 700; transition: 0.3s; }
         .nav-links a:hover { color: var(--primary); }
 
-        /* HERO & FEATURES */
-        .hero { height: 350px; background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.7)), url('https://images.unsplash.com'); background-size: cover; background-position: center; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; border-bottom: 2px solid var(--primary); }
-        .features { background: #111; display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); padding: 20px 5%; gap: 15px; text-align: center; border-bottom: 1px solid #222; }
-        .feat i { color: var(--primary); font-size: 1.5rem; margin-bottom: 5px; }
+        /* HERO AREA */
+        .hero { height: 400px; background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.7)), url('https://images.unsplash.com'); background-size: cover; background-position: center; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; border-bottom: 2px solid var(--primary); }
+        .hero h1 { font-size: 3.5rem; margin: 0; letter-spacing: 4px; text-transform: uppercase; }
+        .hero p { color: var(--primary); font-weight: bold; font-size: 1.2rem; margin-top: 10px; }
 
-        /* CARDS */
-        .section-title { text-align: center; margin: 60px 0 30px; font-size: 2rem; text-transform: uppercase; letter-spacing: 2px; }
-        .container { max-width: 1200px; margin: 0 auto; padding: 20px; display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 35px; }
-        .product-card { background: var(--card-bg); border-radius: 15px; overflow: hidden; border: 1px solid #222; transition: 0.4s; }
-        .product-card:hover { transform: translateY(-10px); border-color: var(--primary); }
+        /* PRODUSE */
+        .section-title { text-align: center; margin: 60px 0 30px; font-size: 2.2rem; text-transform: uppercase; letter-spacing: 3px; position: relative; }
+        .section-title::after { content: ''; width: 80px; height: 4px; background: var(--primary); position: absolute; bottom: -15px; left: 50%; transform: translateX(-50%); }
         
-        .product-img { height: 320px; overflow: hidden; background: #000; position: relative; }
-        .product-img img { width: 100%; height: 100%; object-fit: contain; transition: 0.8s; }
+        .container { max-width: 1300px; margin: 0 auto; padding: 20px; display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 40px; }
+        .product-card { background: var(--card-bg); border-radius: 20px; overflow: hidden; border: 1px solid #222; transition: 0.4s; position: relative; display: flex; flex-direction: column; }
+        .product-card:hover { transform: translateY(-10px); border-color: var(--primary); box-shadow: 0 15px 40px rgba(37, 211, 102, 0.2); }
+        
+        .product-img { height: 350px; overflow: hidden; background: #000; display: flex; align-items: center; justify-content: center; }
+        .product-img img { width: 100%; height: 100%; object-fit: contain; transition: 0.6s; }
         .product-card:hover .product-img img { transform: scale(1.1); }
         
-        .thumbs { display: flex; justify-content: center; gap: 8px; padding: 10px; background: #111; }
-        .thumbs img { width: 50px; height: 50px; object-fit: cover; cursor: pointer; border: 1px solid #333; border-radius: 5px; }
+        .thumbs { display: flex; justify-content: center; gap: 10px; padding: 15px; background: #111; }
+        .thumbs img { width: 55px; height: 55px; object-fit: cover; cursor: pointer; border: 2px solid #333; border-radius: 8px; transition: 0.3s; }
+        .thumbs img:hover { border-color: var(--primary); }
 
-        .price { font-size: 1.8rem; color: var(--primary); font-weight: 900; margin: 15px 0; display: block; }
-        .btn-order { background: var(--primary); color: #000; text-decoration: none; padding: 15px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-weight: 800; gap: 10px; margin: 0 20px 20px; transition: 0.3s; }
-        .btn-order:hover { background: #fff; }
+        .product-info { padding: 25px; text-align: center; flex-grow: 1; }
+        .price { font-size: 2rem; color: var(--primary); font-weight: 900; margin: 15px 0; display: block; }
+        
+        /* BUTON WHATSAPP CU SIGLĂ REPARATĂ */
+        .btn-order { background: var(--primary); color: #000; text-decoration: none; padding: 18px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-weight: 800; gap: 12px; margin: 0 25px 25px; transition: 0.3s; border: none; cursor: pointer; }
+        .btn-order svg { width: 22px; height: 22px; fill: #000; }
+        .btn-order:hover { background: #fff; transform: scale(1.03); }
 
         /* NEWSLETTER */
-        .newsletter { background: #111; padding: 60px 20px; text-align: center; border-top: 1px solid var(--primary); margin: 50px 0; }
-        .newsletter input { padding: 15px; width: 280px; border-radius: 8px 0 0 8px; border: none; outline: none; }
-        .newsletter button { padding: 15px 25px; border-radius: 0 8px 8px 0; border: none; background: var(--primary); font-weight: bold; cursor: pointer; }
+        .newsletter { background: #111; padding: 80px 20px; text-align: center; border-top: 2px solid var(--primary); margin: 60px 0; }
+        .newsletter input { padding: 18px; width: 320px; border-radius: 10px 0 0 10px; border: 1px solid #333; background: #000; color: white; }
+        .newsletter button { padding: 18px 30px; border-radius: 0 10px 10px 0; border: none; background: var(--primary); font-weight: bold; cursor: pointer; transition: 0.3s; }
+        .newsletter button:hover { background: #fff; }
+
+        /* RECENZII */
+        .reviews { padding: 80px 5%; background: #0a0a0a; }
+        .review-card { background: #161616; padding: 35px; border-radius: 20px; border-left: 6px solid var(--primary); max-width: 900px; margin: 0 auto 25px; }
+        .stars { color: var(--gold); font-size: 1.2rem; margin-bottom: 10px; }
 
         /* FOOTER */
-        footer { background: #000; padding: 50px 20px; text-align: center; border-top: 1px solid #222; }
-        .legal-badges img { height: 40px; margin: 10px; filter: grayscale(1); opacity: 0.6; }
+        footer { background: #000; padding: 60px 20px; text-align: center; border-top: 1px solid #222; }
+        .social-footer { display: flex; justify-content: center; gap: 30px; margin: 30px 0; }
+        .social-footer svg { width: 35px; height: 35px; fill: #555; transition: 0.3s; }
+        .social-footer a:hover svg { fill: var(--primary); }
 
-        .whatsapp-float { position: fixed; width: 65px; height: 65px; bottom: 30px; right: 30px; background: #25d366; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 35px; z-index: 2000; text-decoration: none; box-shadow: 0 10px 25px rgba(0,0,0,0.5); animation: pulse 2s infinite; }
-        @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.1); } 100% { transform: scale(1); } }
+        /* WHATSAPP FLOAT */
+        .whatsapp-float { position: fixed; width: 70px; height: 70px; bottom: 30px; right: 30px; background: #25d366; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; z-index: 2000; box-shadow: 0 10px 30px rgba(0,0,0,0.5); animation: pulse 2s infinite; text-decoration: none; }
+        .whatsapp-float svg { width: 40px; height: 40px; fill: white; }
+        @keyframes pulse { 0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); } 70% { transform: scale(1.05); box-shadow: 0 0 0 20px rgba(37, 211, 102, 0); } 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); } }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.2rem; }
+            .nav-links { display: none; }
+            .newsletter input { width: 100%; border-radius: 10px; margin-bottom: 10px; }
+            .newsletter button { width: 100%; border-radius: 10px; }
+        }
     </style>
 </head>
 <body>
 
+<!-- BARA SOCIALĂ STÂNGA -->
 <div class="sticky-social">
     <a href="https://www.instagram.com" target="_blank" class="social-tag s-ig">
-        <i class="fab fa-instagram"></i> <span>Instagram Shop</span>
+        <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+        <span>Instagram Shop</span>
     </a>
     <a href="#" class="social-tag s-fb">
-        <i class="fab fa-facebook-f"></i> <span>Facebook Official</span>
+        <svg viewBox="0 0 24 24"><path d="M22.675 0h-21.35c-.732 0-1.325.593-1.325 1.325v21.351c0 .731.593 1.324 1.325 1.324h11.495v-9.294h-3.128v-3.622h3.128v-2.671c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.313h3.587l-.467 3.622h-3.12v9.293h6.116c.73 0 1.323-.593 1.323-1.324v-21.35c0-.732-.593-1.325-1.325-1.325z"/></svg>
+        <span>Facebook Official</span>
     </a>
 </div>
 
-<div class="top-bar">🚚 LIVRARE RAPIDĂ 24H | PLATA LA LIVRARE</div>
+<div class="top-bar">🔥 REDUCERI DE SEZON | PLATA LA LIVRARE</div>
 
 <nav>
     <a href="#" class="logo">OZI<span>SHOP</span></a>
@@ -104,104 +116,52 @@ html
         <a href="#tech">Tech</a>
         <a href="#haine">Haine</a>
         <a href="#shoes">Pantofi</a>
+        <a href="#recenzii">Recenzii</a>
     </div>
 </nav>
 
 <section class="hero">
-    <h1 class="animate__animated animate__fadeInDown">OZI PREMIUM STORE</h1>
-    <p class="animate__animated animate__fadeInUp">Calitate Garantată și Stil Modern</p>
+    <h1>OZI PREMIUM SHOP</h1>
+    <p>Calitate superioară | Livrare în 24-48 ore</p>
 </section>
 
-<div class="features">
-    <div class="feat"><i class="fas fa-truck-fast"></i><br><span>LIVRARE RAPIDĂ</span></div>
-    <div class="feat"><i class="fas fa-shield-halved"></i><br><span>GARANȚIE PRODUSE</span></div>
-    <div class="feat"><i class="fas fa-hand-holding-dollar"></i><br><span>PLATĂ RAMBURS</span></div>
-</div>
-
-<!-- TECH -->
+<!-- SECȚIUNE TECH -->
 <h2 class="section-title" id="tech">Electronice & Gaming</h2>
 <div class="container">
     <div class="product-card">
-        <div class="product-img"><img src="imagini/cooler-fata.avif" id="mainImg" alt="Cooler"></div>
+        <div class="product-img">
+            <img src="imagini/cooler-fata.avif" id="mainTech" alt="Cooler">
+        </div>
         <div class="thumbs">
-            <img src="imagini/cooler-fata.avif" onclick="document.getElementById('mainImg').src=this.src">
-            <img src="imagini/cooler-spate.avif" onclick="document.getElementById('mainImg').src=this.src">
+            <img src="imagini/cooler-fata.avif" onclick="document.getElementById('mainTech').src=this.src">
+            <img src="imagini/cooler-spate.avif" onclick="document.getElementById('mainTech').src=this.src">
         </div>
         <div class="product-info">
-            <h3>Cooler Gaming RGB Pro Chill</h3>
-            <div style="color: var(--gold); margin-bottom: 10px;"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+            <h3>Cooler Gaming RGB Pro-Chill</h3>
+            <div class="stars">★★★★★</div>
             <span class="price">125 RON</span>
             <a href="https://wa.me" class="btn-order" target="_blank">
-                <i class="fab fa-whatsapp"></i> COMANDĂ ACUM
+                <svg viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.438 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.668.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+                COMANDĂ WHATSAPP
             </a>
         </div>
     </div>
 </div>
 
-<!-- HAINE -->
+<!-- SECȚIUNE HAINE -->
 <h2 class="section-title" id="haine">Streetwear Fashion</h2>
 <div class="container">
     <div class="product-card">
-        <div class="product-img"><img src="imagini/tricou-1.jpg" alt="Tricou"></div>
+        <div class="product-img">
+            <img src="imagini/tricou-1.jpg" alt="Tricou">
+        </div>
         <div class="product-info">
-            <h3>Tricou Premium Cotton</h3>
+            <h3>Tricou Premium Cotton Oversized</h3>
             <span class="price">89 RON</span>
             <a href="https://wa.me" class="btn-order" target="_blank">
-                <i class="fab fa-whatsapp"></i> COMANDĂ ACUM
+                <svg viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.438 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.668.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+                COMANDĂ WHATSAPP
             </a>
         </div>
     </div>
 </div>
-
-<!-- SHOES -->
-<h2 class="section-title" id="shoes">Încălțăminte</h2>
-<div class="container">
-    <div class="product-card">
-        <div class="product-img"><img src="imagini/adidasi-1.jpg" alt="Sneakers"></div>
-        <div class="product-info">
-            <h3>Sneakers Ozi Red-Line</h3>
-            <span class="price">210 RON</span>
-            <a href="https://wa.me" class="btn-order" target="_blank">
-                <i class="fab fa-whatsapp"></i> COMANDĂ ACUM
-            </a>
-        </div>
-    </div>
-</div>
-
-<section class="newsletter">
-    <h2 style="color:white;">ABONEAZĂ-TE LA REDUCERI</h2>
-    <p>Primești 10% reducere la prima comandă prin WhatsApp!</p>
-    <form onsubmit="alert('Mulțumim!'); return false;">
-        <input type="email" placeholder="Email-ul tau..." required>
-        <button type="submit">ABONARE</button>
-    </form>
-</section>
-
-<!-- RECENZII -->
-<h2 class="section-title" id="recenzii">Recenzii Clienți</h2>
-<div class="container" style="display:block;">
-    <div style="background:#161616; padding:20px; border-radius:10px; margin-bottom:15px; border-left:4px solid var(--primary);">
-        <p>"Calitate excelentă, am primit coletul a doua zi!" - <strong>Andrei M.</strong></p>
-    </div>
-</div>
-
-<footer>
-    <div style="margin-bottom: 25px;">
-        <h3 style="color:white;">OZI SHOP ROMANIA</h3>
-        <div style="font-size: 1.8rem; gap: 25px; display: flex; justify-content: center; margin-top: 15px;">
-            <a href="https://www.instagram.com" target="_blank" style="color:#E1306C;"><i class="fab fa-instagram"></i></a>
-            <a href="https://wa.me" target="_blank" style="color:#25D366;"><i class="fab fa-whatsapp"></i></a>
-        </div>
-    </div>
-    <div class="legal-badges">
-        <a href="https://anpc.ro" target="_blank"><img src="https://wp.anpc.ro" alt="ANPC"></a>
-        <a href="#"><img src="https://vrajitorul.eu" alt="SOL"></a>
-    </div>
-</footer>
-
-<a href="https://wa.me" class="whatsapp-float" target="_blank">
-    <i class="fab fa-whatsapp"></i>
-</a>
-
-</body>
-</html>
