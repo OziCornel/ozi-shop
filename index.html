@@ -35,11 +35,13 @@ html
         
         .burger { display: none; cursor: pointer; z-index: 1600; }
         .burger div { width: 25px; height: 3px; background: var(--primary); margin: 5px; transition: 0.4s; }
+        
+        /* ANIMATIE BURGER X */
         .toggle .line1 { transform: rotate(-45deg) translate(-5px, 6px); }
         .toggle .line2 { opacity: 0; }
         .toggle .line3 { transform: rotate(45deg) translate(-5px, -6px); }
 
-        /* PRODUSE */
+        /* HERO & PRODUSE */
         .hero { background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.5)), url('https://images.unsplash.com'); height: 250px; background-size: cover; background-position: center; display: flex; align-items: center; justify-content: center; text-align: center; }
         .section-title { text-align: center; margin: 50px 0 20px; color: var(--primary); text-transform: uppercase; letter-spacing: 2px; }
         .container { max-width: 1200px; margin: 0 auto; padding: 20px; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
@@ -57,7 +59,6 @@ html
         .form-group { margin-bottom: 15px; text-align: left; }
         .form-group label { display: block; color: #888; font-size: 0.85rem; margin-bottom: 5px; }
         .form-group input, .form-group textarea, .form-group select { width: 100%; padding: 12px; background: #000; border: 1px solid #333; color: white; border-radius: 6px; box-sizing: border-box; font-size: 1rem; }
-        
         .cart-summary { background: #222; padding: 15px; border-radius: 8px; margin-bottom: 20px; border-left: 4px solid var(--primary); }
 
         @media (max-width: 768px) {
@@ -75,7 +76,7 @@ html
     <a href="#" class="social-tag s-fb">f <span>Facebook</span></a>
 </div>
 
-<div class="top-bar">🚚 LIVRARE RAPIDĂ - PLATA RAMBURS LA PRIMIREA COLETULUI</div>
+<div class="top-bar">🚚 LIVRARE RAPIDĂ - PLATA RAMBURS LA PRIMIRE</div>
 
 <nav>
     <a href="#" class="logo" onclick="location.reload()">OZI SHOP</a>
@@ -97,7 +98,6 @@ html
     <h1 style="font-size: 2.5rem;">Ozi Online Store</h1>
 </div>
 
-<!-- SECȚIUNI PRODUSE -->
 <h2 class="section-title" id="electronice">Electronice</h2>
 <div class="container">
     <div class="product-card">
@@ -128,107 +128,63 @@ html
     </div>
 </div>
 
-<!-- MODAL COȘ & CHECKOUT -->
+<!-- MODAL COȘ -->
 <div id="cartModal" class="modal">
     <div class="modal-content">
         <span class="close-modal" onclick="closeCart()">&times;</span>
         <h2 style="color: var(--primary); margin-top: 0;">Finalizare Comandă</h2>
-        
-        <div class="cart-summary" id="cart-summary">
-            <p>Coșul este gol.</p>
-        </div>
+        <div class="cart-summary" id="cart-summary"><p>Coș gol.</p></div>
 
-       <form action="https://formspree.io" method="POST" id="order-form" style="display: none;">
-            <input type="hidden" name="Produse_Comandate" id="form-items">
-            <input type="hidden" name="Total_Plata" id="form-total">
-            
+        <!-- FORMULAR CORECTAT -->
+        <form action="https://formspree.io" method="POST" id="order-form" style="display: none;">
+            <input type="hidden" name="Produse" id="form-items">
+            <input type="hidden" name="Total" id="form-total">
+            <div class="form-group"><label>Nume Complet</label><input type="text" name="Nume" required></div>
+            <div class="form-group"><label>Telefon</label><input type="tel" name="Telefon" required></div>
+            <div class="form-group"><label>Adresă Livrare</label><textarea name="Adresa" rows="2" required></textarea></div>
+            <div class="form-group"><label>Cod Poștal</label><input type="text" name="Cod_Postal"></div>
             <div class="form-group">
-                <label>Nume Complet</label>
-                <input type="text" name="Nume" required placeholder="Ex: Popescu Ion">
+                <label>Livrare</label>
+                <select name="Livrare"><option value="Curier">Curier (20 RON)</option><option value="Ridicare">Ridicare Personală</option></select>
             </div>
-            <div class="form-group">
-                <label>Telefon</label>
-                <input type="tel" name="Telefon" required placeholder="07xx xxx xxx">
-            </div>
-            <div class="form-group">
-                <label>Adresa (Stradă, Nr, Bloc, Oraș)</label>
-                <textarea name="Adresa" rows="2" required placeholder="Adresa completă de livrare"></textarea>
-            </div>
-            <div class="form-group">
-                <label>Cod Poștal (opțional)</label>
-                <input type="text" name="Cod_Postal" placeholder="Ex: 123456">
-            </div>
-            <div class="form-group">
-                <label>Metodă de Livrare</label>
-                <select name="Metoda_Livrare" required>
-                    <option value="Curier Rapid (24-48h)">Curier Rapid - 20 RON</option>
-                    <option value="Ridicare Personală">Ridicare Personală (Gratuit)</option>
-                </select>
-            </div>
-            <button type="submit" class="btn-cart" style="width: 100%; background: var(--danger); font-size: 1.1rem; padding: 15px;">TRIMITE COMANDA</button>
+            <button type="submit" class="btn-cart" style="width:100%; background:var(--danger);">TRIMITE COMANDA</button>
         </form>
     </div>
 </div>
 
 <script>
     let cart = [];
-
     function toggleMenu() {
-        const nav = document.getElementById('nav-links');
-        const burger = document.getElementById('burger-icon');
-        nav.classList.toggle('active');
-        burger.classList.toggle('toggle');
+        document.getElementById('nav-links').classList.toggle('active');
+        document.getElementById('burger-icon').classList.toggle('toggle');
     }
-
     function scrollToSection(id) {
         document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
         if(window.innerWidth <= 768) toggleMenu();
     }
-
     function addToCart(name, price) {
         cart.push({name, price});
-        updateCartCount();
-        alert("Produs adăugat în coș!");
-    }
-
-    function updateCartCount() {
         document.getElementById('cart-count').innerText = cart.length;
+        alert("Produs adăugat!");
     }
-
     function openCart() {
         const modal = document.getElementById('cartModal');
         const summary = document.getElementById('cart-summary');
         const form = document.getElementById('order-form');
         modal.style.display = 'block';
-
         if(cart.length === 0) {
             summary.innerHTML = "<p>Coșul este gol.</p>";
             form.style.display = "none";
         } else {
             form.style.display = "block";
-            let total = 0;
-            let itemsString = "";
-            let html = "<ul>";
-            cart.forEach(item => {
-                html += `<li>${item.name} - ${item.price} RON</li>`;
-                total += item.price;
-                itemsString += item.name + ", ";
-            });
-            html += `</ul><p style='text-align:right; font-weight:bold; color:var(--primary);'>Total: ${total} RON</p>`;
-            summary.innerHTML = html;
-            document.getElementById('form-items').value = itemsString;
+            let total = 0; let items = "";
+            summary.innerHTML = cart.map(i => { total += i.price; items += i.name + ", "; return `<p>${i.name} - ${i.price} RON</p>`; }).join('') + `<strong>Total: ${total} RON</strong>`;
+            document.getElementById('form-items').value = items;
             document.getElementById('form-total').value = total + " RON";
         }
     }
-
-    function closeCart() {
-        document.getElementById('cartModal').style.display = 'none';
-    }
-
-    window.onclick = function(event) {
-        if (event.target == document.getElementById('cartModal')) closeCart();
-    }
+    function closeCart() { document.getElementById('cartModal').style.display = 'none'; }
+    window.onclick = function(e) { if(e.target == document.getElementById('cartModal')) closeCart(); }
 </script>
 </body>
 </html>
-
